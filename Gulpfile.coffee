@@ -17,41 +17,28 @@ webpackSource = require 'webpack'
 
 karmaConf = require './karma.defaults'
 
-outFiles =
-  scripts: 'bundle.js'
-  styles: 'bundle.css'
-
 paths =
-  static: './src/*.*'
-  images: './src/images/*.*'
-  scripts: ['./src/**/*.coffee', './*.coffee']
-  styles: './src/stylus/**/*.styl'
-
-  tests: './test/*/**/*.coffee'
+  static: './src/static/**/*'
+  scripts: ['./src/**/*.coffee', './*.coffee', './test/*/**/*.coffee']
   serverTests: './test/server.coffee'
   root: './src/root.coffee'
   rootTests: './test/index.coffee'
-  baseStyle: './src/stylus/base.styl'
   dist: './dist/'
   build: './build/'
 
 # start the dev server, and auto-update
-gulp.task 'dev', ['assets:dev', 'watch:dev'], ->
+gulp.task 'dev', ['assets:dev'], ->
   gulp.start 'server'
 
 # compile sources: src/* -> build/*
 gulp.task 'assets:dev', [
-  'styles:dev'
   'static:dev'
-  'images:dev'
 ]
 
 # compile sources: src/* -> dist/*
 gulp.task 'assets:prod', [
   'scripts:prod'
-  'styles:prod'
   'static:prod'
-  'images:prod'
 ]
 
 # build for production
@@ -63,10 +50,14 @@ gulp.task 'build', (cb) ->
 gulp.task 'test', [
     'scripts:test'
     'test:server'
-    'lint:tests'
-    'lint:scripts'
+    'lint'
   ], (cb) ->
   karma.start _.defaults(singleRun: true, karmaConf), process.exit
+
+# start the dev server
+gulp.task 'server', ->
+  # Don't actually watch for changes, just run the server
+  nodemon {script: 'bin/dev_server.coffee', ext: 'null', ignore: ['**/*.*']}
 
 # gulp-mocha will never exit on its own.
 gulp.task 'test:server', ['scripts:test'], ->
@@ -80,7 +71,6 @@ gulp.task 'test:phantom', ['scripts:test'], (cb) ->
   }, karmaConf), cb
 
 gulp.task 'scripts:test', ->
-
   gulp.src paths.rootTests
   .pipe webpack
     module:
@@ -95,14 +85,12 @@ gulp.task 'scripts:test', ->
           loader: 'style/useable!css!stylus?paths=components/'
         }
       ]
-    externals:
-      kik: '{}'
     plugins: [
       new RewirePlugin()
     ]
     resolve:
       extensions: ['.coffee', '.js', '.json', '']
-      # browser-builtins is for modules requesting native node modules
+      # browser-builtins is for tests requesting native node modules
       modulesDirectories: ['web_modules', 'node_modules', './src',
       './node_modules/browser-builtins/builtin']
   .pipe rename 'bundle.js'
@@ -110,53 +98,17 @@ gulp.task 'scripts:test', ->
 
 
 # run coffee-lint
-gulp.task 'lint:tests', ->
-  gulp.src paths.tests
-    .pipe coffeelint()
-    .pipe coffeelint.reporter()
-
-#
-# Dev server and watcher
-#
-
-# start the dev server
-gulp.task 'server', ->
-  # Don't actually watch for changes, just run the server
-  nodemon {script: 'bin/dev_server.coffee', ext: 'null', ignore: ['**/*.*']}
-
-gulp.task 'watch:dev', ->
-  gulp.watch paths.styles, ['styles:dev']
-
-gulp.task 'watch:test', ->
-  gulp.watch paths.scripts.concat([paths.tests]), ['test:phantom']
-
-# run coffee-lint
-gulp.task 'lint:scripts', ->
+gulp.task 'lint', ->
   gulp.src paths.scripts
     .pipe coffeelint()
     .pipe coffeelint.reporter()
 
-#
-# Dev compilation
-#
+gulp.task 'watch:test', ->
+  gulp.watch paths.scripts, ['test:phantom']
 
-# css/style.css --> build/css/bundle.css
-gulp.task 'styles:dev', ->
-  gulp.src paths.baseStyle
-    .pipe sourcemaps.init()
-      .pipe stylus 'include css': true
-      .pipe rename outFiles.styles
-    .pipe sourcemaps.write()
-    .pipe gulp.dest paths.build + '/css/'
-
-# * --> build/*
 gulp.task 'static:dev', ->
   gulp.src paths.static
     .pipe gulp.dest paths.build
-
-gulp.task 'images:dev', ->
-  gulp.src paths.images
-    .pipe gulp.dest paths.build + '/images'
 
 #
 # Production compilation
@@ -186,28 +138,11 @@ gulp.task 'scripts:prod', ->
     plugins: [
       new webpackSource.optimize.UglifyJsPlugin()
     ]
-    externals:
-      kik: 'kik'
     resolve:
       extensions: ['.coffee', '.js', '.json', '']
   .pipe rename 'bundle.js'
   .pipe gulp.dest paths.dist + '/js/'
 
-# css/style.css --> dist/css/bundle.min.css
-gulp.task 'styles:prod', ->
-  gulp.src paths.baseStyle
-    .pipe sourcemaps.init()
-      .pipe stylus 'include css': true
-      .pipe rename outFiles.styles
-      .pipe minifyCss()
-    .pipe sourcemaps.write '../maps/'
-    .pipe gulp.dest paths.dist + '/css/'
-
-# * --> dist/*
 gulp.task 'static:prod', ->
   gulp.src paths.static
     .pipe gulp.dest paths.dist
-
-gulp.task 'images:prod', ->
-  gulp.src paths.images
-    .pipe gulp.dest paths.dist + '/images'

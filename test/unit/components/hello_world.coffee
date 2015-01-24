@@ -7,5 +7,5 @@ describe 'StarsComponent', ->
     helloWorldComponent = new HelloWorld()
     $ = helloWorldComponent.render()
 
-    $.tagName.should.be 'div'
+    $.tagName.should.be 'DIV'
     $.properties.className.should.be 'z-hello-world'

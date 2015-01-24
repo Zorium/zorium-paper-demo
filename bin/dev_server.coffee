@@ -6,7 +6,7 @@ webpack = require 'webpack'
 WebpackDevServer = require 'webpack-dev-server'
 config = require '../src/config'
 
-webpackDevPort = 3004
+webpackDevPort = config.WEBPACK_DEV_PORT
 webpackDevHostname = config.WEBPACK_DEV_HOSTNAME
 isMockingApi = config.MOCK
 
@@ -48,8 +48,6 @@ new WebpackDevServer webpack({
   plugins: [
     new webpack.HotModuleReplacementPlugin()
   ]
-  externals:
-    kik: 'kik'
   resolve:
     extensions: ['.coffee', '.js', '.json', '']
 }),
