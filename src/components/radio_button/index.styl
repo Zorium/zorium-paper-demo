@@ -1,0 +1,73 @@
+@require 'nib'
+@require '../../root'
+
+json('../../vars.json')
+
+$black54 = alpha(#000, 0.54)
+$black26 = alpha(#000, 0.26)
+$white70 = alpha(#fff, 0.70)
+$white30 = alpha(#fff, 0.30)
+
+.z-radio-button
+  display: inline-block
+  white-space: nowrap
+  min-height: 4.8rem
+  min-width: 4.8rem
+  line-height: 4.8rem
+  border-radius: 50%
+  position: relative
+  cursor: pointer
+  overflow: hidden
+
+  > .ring
+    position: absolute
+    top: 50%
+    left: 50%
+    margin-top: -8px
+    margin-left: -8px
+    width: 12px
+    height: 12px
+    border-radius: 50%
+    border: solid 2px
+    transition: border-color 0.28s
+
+  > .fill
+    position: absolute
+    top: 50%
+    left: 50%
+    margin-top: -4px
+    margin-left: -4px
+    width: 8px
+    height: 8px
+    border-radius: 50%
+    transform: scale(0)
+    transition: transform ease 0.28s
+
+  &[checked]
+    > .ring
+      border-color: #009688
+
+    > .fill
+      transform: scale(1)
+
+  &.light
+    > .ring
+      border-color: $black54
+
+    &[disabled]
+      > .ring
+        border-color: $black26
+
+      > .fill
+        background: $black26
+
+  &.dark
+    > .ring
+      border-color: $white70
+
+    &[disabled]
+      > .ring
+        border-color: $white30
+
+      > .fill
+        background: $white30

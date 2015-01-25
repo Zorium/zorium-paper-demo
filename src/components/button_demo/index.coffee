@@ -30,18 +30,18 @@ module.exports = class ButtonDemo
           text: 'click me'
           isRaised: true
           isTextLight: true
-          color200: styleVars.blue200
-          color500: styleVars.blue500
-          color600: styleVars.blue600
-          color700: styleVars.blue700
+          color200: styleVars.$blue200
+          color500: styleVars.$blue500
+          color600: styleVars.$blue600
+          color700: styleVars.$blue700
         new Button
           text: 'click me'
           isRaised: true
           isTextLight: true
-          color200: styleVars.blue200
-          color500: styleVars.blue500
-          color600: styleVars.blue600
-          color700: styleVars.blue700
+          color200: styleVars.$blue200
+          color500: styleVars.$blue500
+          color600: styleVars.$blue600
+          color700: styleVars.$blue700
           isDisabled: true
       ]
       darkRaised: [
@@ -49,19 +49,19 @@ module.exports = class ButtonDemo
           text: 'click me'
           isRaised: true
           isTextLight: true
-          color200: styleVars.blue200
-          color500: styleVars.blue500
-          color600: styleVars.blue600
-          color700: styleVars.blue700
+          color200: styleVars.$blue200
+          color500: styleVars.$blue500
+          color600: styleVars.$blue600
+          color700: styleVars.$blue700
           isDark: true
         new Button
           text: 'click me'
           isRaised: true
           isTextLight: true
-          color200: styleVars.blue200
-          color500: styleVars.blue500
-          color600: styleVars.blue600
-          color700: styleVars.blue700
+          color200: styleVars.$blue200
+          color500: styleVars.$blue500
+          color600: styleVars.$blue600
+          color700: styleVars.$blue700
           isDisabled: true
           isDark: true
       ]
