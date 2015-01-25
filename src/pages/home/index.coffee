@@ -1,11 +1,14 @@
 z = require 'zorium'
 
-HelloWorld = require '../../components/hello_world'
+components = [
+  require '../../components/font_demo'
+]
 
 module.exports = class HomePage
   constructor: ->
     @state = z.state
-      hello: new HelloWorld()
+      components: _.map components, (component) ->
+        new component()
 
-  render: =>
-    z 'div', @state().hello
+  render: ({components}) ->
+    z 'div', components

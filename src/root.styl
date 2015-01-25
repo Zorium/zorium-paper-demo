@@ -1,9 +1,100 @@
-@require '../bower_components/normalize.css/normalize.css'
 @require 'nib'
 
 //
 // Base Styles
 //
 
+$black54=rgba(0, 0, 0, 0.54)
+$black87=rgba(0, 0, 0, 0.87)
+
+z-font-display4()
+  font-family: Roboto
+  font-size: 11.2rem
+  font-weight: 300
+  color: $black54
+  letter-spacing: -0.01rem
+
+z-font-display3()
+  font-family: Roboto
+  font-size: 5.6rem
+  font-weight: 400
+  color: $black54
+  letter-spacing: -0.005rem
+
+z-font-display2()
+  font-family: Roboto
+  font-size: 4.5rem
+  font-weight: 400
+  color: $black54
+  letter-spacing: 0rem
+
+z-font-display1()
+  font-family: Roboto
+  font-size: 3.4rem
+  font-weight: 400
+  color: $black54
+  letter-spacing: 0rem
+
+z-font-headline()
+  font-family: Roboto
+  font-size: 2.4rem
+  font-weight: 400
+  color: $black87
+  letter-spacing: 0rem
+
+z-font-title()
+  font-family: Roboto
+  font-size: 2.0rem
+  font-weight: 500
+  color: $black87
+  letter-spacing: 0.005rem
+
+z-font-subhead()
+  font-family: Roboto
+  font-size: 1.6rem
+  font-weight: 400
+  color: $black87
+  letter-spacing: 0.01rem
+
+  @media only screen and (min-width: 1224px)
+    font-size: 1.5rem
+
+z-font-body2()
+  font-family: Roboto
+  font-size: 1.4rem
+  font-weight: 500
+  color: $black87
+  letter-spacing: 0.01rem
+
+  @media only screen and (min-width: 1224px)
+    font-size: 1.3rem
+
+z-font-body1()
+  font-family: Roboto
+  font-size: 1.4rem
+  font-weight: 400
+  color: $black87
+  letter-spacing: 0.01rem
+
+  @media only screen and (min-width: 1224px)
+    font-size: 1.3rem
+
+z-font-caption()
+  font-family: Roboto
+  font-size: 1.2rem
+  font-weight: 400
+  color: $black54
+  letter-spacing: 0.01rem
+
+z-font-button()
+  font-family: Roboto
+  font-size: 1.4rem
+  font-weight: 500
+  color: $black87
+  letter-spacing: 0.01rem
+
 html
   font-size: 62.5% /* 10px browser default */
+
+body
+  z-font-body1()

@@ -6,7 +6,6 @@ rename = require 'gulp-rename'
 clean = require 'gulp-clean'
 sourcemaps = require 'gulp-sourcemaps'
 runSequence = require 'gulp-run-sequence'
-stylus = require 'gulp-stylus'
 coffeelint = require 'gulp-coffeelint'
 karma = require('karma').server
 minifyCss = require 'gulp-minify-css'
@@ -82,7 +81,7 @@ gulp.task 'scripts:test', ->
         { test: /\.json$/, loader: 'json' }
         {
           test: /\.styl$/
-          loader: 'style/useable!css!stylus?paths=components/'
+          loader: 'style/useable!css!stylus'
         }
       ]
     plugins: [
@@ -132,7 +131,7 @@ gulp.task 'scripts:prod', ->
         { test: /\.json$/, loader: 'json' }
         {
           test: /\.styl$/
-          loader: 'style/useable!css!stylus?paths=components/'
+          loader: 'style/useable!css!stylus'
         }
       ]
     plugins: [
