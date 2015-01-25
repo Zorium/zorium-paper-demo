@@ -2,6 +2,7 @@ z = require 'zorium'
 
 components = [
   require '../../components/font_demo'
+  require '../../components/button_demo'
 ]
 
 module.exports = class HomePage

@@ -1,7 +1,6 @@
 z = require 'zorium'
 
 styles = require './index.styl'
-styleVars = require '../../vars.json'
 
 module.exports = class FontDemo
   constructor: ->
