@@ -35,7 +35,8 @@ module.exports = class RadioButtom extends Ripple
         onclick: if not isDisabled then @toggle
         # coffeelint: disable=missing_fat_arrows
         onmousedown: (e) ->
-          ripple this, color200, e.clientX, e.clientY, true, true
+          unless isDisabled
+            ripple this, color200, e.clientX, e.clientY, true, true
         # coffeelint: enable=missing_fat_arrows
       },
       z '.ring', {
