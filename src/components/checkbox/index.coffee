@@ -29,7 +29,7 @@ module.exports = class RadioButtom extends Ripple
     ripple = @ripple
     toggle = @toggle
 
-    z ".z-radio-button
+    z ".z-checkbox
         #{isDark and '.dark' or '.light'}
         #{isChecked and '[checked]' or ''}
         #{isDisabled and '[disabled]' or ''}",
@@ -46,15 +46,17 @@ module.exports = class RadioButtom extends Ripple
                   e.clientX, e.clientY, true, true
             else
               ripple this, color200, e.clientX, e.clientY, true, true
+
             toggle()
+
         # coffeelint: enable=missing_fat_arrows
       },
-      z '.ring', {
+      z '.checkbox', {
         style:
-          borderColor: if isChecked and not isDisabled then color500 else null
+          backgroundColor: if isChecked and not isDisabled then color500 \
+                           else null
+          borderColor: if isChecked and not isDisabled then color500 \
+                           else null
       }
-      z '.fill', {
-        style:
-          backgroundColor: if not isDisabled then color500 else null
-      }
+      z '.checkmark'
   # coffeelint: enable=cyclomatic_complexity

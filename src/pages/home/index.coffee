@@ -1,6 +1,7 @@
 z = require 'zorium'
 
 components = [
+  require '../../components/checkbox_demo'
   require '../../components/radio_button_demo'
   require '../../components/button_demo'
   require '../../components/font_demo'
