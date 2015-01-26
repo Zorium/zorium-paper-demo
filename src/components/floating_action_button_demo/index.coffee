@@ -17,8 +17,12 @@ module.exports = class ButtonDemo
               display: 'inline-block'
               width: '20px'
               height: '20px'
-              padding: '2px'
+              margin: '2px'
               background: 'black'
+              color: 'white'
+              textAlign: 'center'
+              lineHeight: '20px'
+            , 'Z'
         new FloatingActionButton
           isMini: true
           color500: styleVars.$blue500
@@ -26,8 +30,12 @@ module.exports = class ButtonDemo
             style:
               width: '20px'
               height: '20px'
-              padding: '2px'
+              margin: '2px'
               background: 'black'
+              color: 'white'
+              textAlign: 'center'
+              lineHeight: '20px'
+            , 'Z'
       ]
 
   render: ({buttons}) ->
