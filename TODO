@@ -1,6 +1,6 @@
-solve cyclomatic complexity issues
 fix firefox ripple and dialog
 two-way data binding ideas
+cleaner param pass-through
 mixin support instead of class extension (ripple)
 add normalize.css back in
 move vars.json to npm

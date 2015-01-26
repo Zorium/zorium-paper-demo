@@ -27,17 +27,32 @@ module.exports = class Input
       isDark
     }
 
-  # coffeelint: disable=cyclomatic_complexity
+  hintClass: =>
+    {value, isFloating} = @state()
+
+    _.filter([
+      '.hint'
+      value isnt '' and not isFloating and '.hidden' or
+        value isnt '' and '.floating'
+    ]).join('')
+
+  underlineClass: =>
+    {isFocused, isDisabled, error} = @state()
+
+    _.filter([
+      '.underline'
+      isFocused and '.focused'
+      isDisabled and '.disabled'
+      error? and '.isError'
+    ]).join('')
+
   render: ({color500, hintText, isFloating,
             isDisabled, value, isFocused, error, isDark}) ->
     o_value = @o_value
     o_isFocused = @o_isFocused
 
     z ".z-input#{isDark and '.dark' or ''}#{isFloating and '.floating' or ''}",
-      z ".hint
-        #{if value isnt '' and not isFloating then '.hidden' \
-          else if value isnt '' then '.floating'
-          else ''}",
+      z @hintClass(),
         hintText
       z "input.input#{isDisabled and '[disabled]' or ''}",
         value: value
@@ -49,11 +64,8 @@ module.exports = class Input
         onblur: ->
           o_isFocused.set false
         # coffeelint: enable=missing_fat_arrows
-      z ".underline#{isFocused and '.focused' or ''}
-          #{isDisabled and '.disabled' or ''}
-          #{error? and '.isError'}",
+      z @underlineClass(),
           style:
             backgroundColor: if isFocused and not error? then color500 else null
       if error?
         z '.error', error
-    # coffeelint: enable=cyclomatic_complexity

@@ -20,7 +20,6 @@ module.exports = class FloatingActionButton extends Ripple
         onclick: onclick
     }
 
-  # coffeelint: disable=cyclomatic_complexity
   render: ({icon, color500, isMini, listeners}) ->
     ripple = @ripple
 
@@ -36,4 +35,3 @@ module.exports = class FloatingActionButton extends Ripple
     },
     z '.icon-container',
       icon
-  # coffeelint: enable=cyclomatic_complexity

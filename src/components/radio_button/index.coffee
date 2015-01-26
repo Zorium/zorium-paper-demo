@@ -24,15 +24,21 @@ module.exports = class RadioButtom extends Ripple
   toggle: =>
     @state.set isChecked: not @state().isChecked
 
-  # coffeelint: disable=cyclomatic_complexity
+  radioButtonClass: =>
+    {isDark, isChecked, isDisabled} = @state()
+
+    _.filter([
+      '.z-radio-button'
+      isDark and '.dark' or '.light'
+      isChecked and '[checked]'
+      isDisabled and '[disabled]'
+    ]).join('')
+
   render: ({color500, color200, isChecked, isDisabled, isDark}) =>
     ripple = @ripple
     toggle = @toggle
 
-    z ".z-radio-button
-        #{isDark and '.dark' or '.light'}
-        #{isChecked and '[checked]' or ''}
-        #{isDisabled and '[disabled]' or ''}",
+    z @radioButtonClass(),
       {
         # coffeelint: disable=missing_fat_arrows
         onmousedown: (e) ->
@@ -57,4 +63,3 @@ module.exports = class RadioButtom extends Ripple
         style:
           backgroundColor: if not isDisabled then color500 else null
       }
-  # coffeelint: enable=cyclomatic_complexity

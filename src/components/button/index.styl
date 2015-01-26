@@ -57,17 +57,17 @@ $white12 = alpha(#fff, 0.12)
       &[disabled]
         color: $black26
 
-    &.flat-dark
-      color: $white
+      &.dark
+        color: $white
 
-      &:hover
-        background: alpha(#ccc, 0.15)
+        &:hover
+          background: alpha(#ccc, 0.15)
 
-      &:active
-        background: alpha(#ccc, 0.25)
+        &:active
+          background: alpha(#ccc, 0.25)
 
-      &[disabled]
-        color: alpha(#fff, 0.30)
+        &[disabled]
+          color: alpha(#fff, 0.30)
 
 
     &.raised
@@ -81,13 +81,13 @@ $white12 = alpha(#fff, 0.12)
         background: $black12
         color: $black26
 
-    &.raised-dark
-      z-shadow-1()
+      &.dark
+        z-shadow-1()
 
-      &:active
-        z-shadow-2()
+        &:active
+          z-shadow-2()
 
-      &[disabled]
-        box-shadow: none
-        background: $white12
-        color: $white30
+        &[disabled]
+          box-shadow: none
+          background: $white12
+          color: $white30

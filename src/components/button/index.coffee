@@ -36,18 +36,26 @@ module.exports = class Button extends Ripple
       color700
     }
 
-  # coffeelint: disable=cyclomatic_complexity
+  buttonClass: =>
+    {isTextLight, isRaised, isDisabled, isShort, isDark} = @state()
+
+    _.filter([
+      '.button'
+      isTextLight and '.light-text'
+      isRaised and '.raised' or '.flat'
+      isDark and '.dark'
+      isDisabled and '[disabled]'
+      isShort and '.short'
+    ]).join('')
+
   render: ({
-    text, isRaised, isTextLight, isDisabled, listeners,
-    isDark, isShort, inkColor, color200, color500, color600, color700
+    text, isDisabled, listeners, inkColor,
+    color200, color500, color600, color700
     }) =>
     ripple = @ripple
 
     z '.z-button',
-      z ".button#{isTextLight and '.light-text' or ''}
-        #{isRaised and '.raised' or '.flat'}#{isDark and '-dark' or ''}
-        #{isDisabled and '[disabled]' or ''}
-        #{isShort and '.short' or ''}",
+      z @buttonClass(),
         {
           onclick: listeners.onclick
           # coffeelint: disable=missing_fat_arrows
@@ -68,4 +76,3 @@ module.exports = class Button extends Ripple
             color: if inkColor and not isDisabled then inkColor else null
         },
         text
-  # coffeelint: enable=cyclomatic_complexity
