@@ -1,0 +1,78 @@
+@require 'nib'
+@require '../../root'
+
+json('../../vars.json')
+
+
+.z-input
+  z-font-subhead()
+  min-height: 4.8rem
+  display: inline-block
+  outline: none
+  text-align: inherit
+  position: relative
+
+  &.floating
+    min-height: 7.2rem
+
+    > .hint
+      top: 3.2rem
+
+    > .input
+      padding: 3.2rem 0 0.8rem 0
+
+  &.dark
+    color: $white
+
+
+  > .hint
+    pointer-events: none
+    position: absolute
+    background: transparent
+    top: 1.6rem
+    color: $grey600
+
+    transform-origin: 0% 0%
+    transition: top 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+                font-size 0.2s cubic-bezier(0.4, 0, 0.2, 1)
+
+    &.hidden
+      display: none
+
+    &.floating
+      font-size: 1.2rem
+      top: 1.6rem
+
+  > .input
+    padding: 1.6rem 0 0.8rem 0
+    width: 100%
+
+    font: inherit
+    color: inherit
+    background-color: transparent
+    border: none
+    outline: none
+
+  > .underline
+    position: absolute
+    height: 1px
+    width: 100%
+    background: $grey600
+
+    &.focused
+      height: 2px
+
+    &.isError
+      background: $red500
+
+    &.disabled
+      background: none
+      border-bottom: 1px dashed $grey600
+
+  > .error
+    z-font-caption()
+    color: $red500
+    margin-top: 8px
+    position: absolute
+    pointer-events: none
+    background: transparent

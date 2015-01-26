@@ -3,3 +3,6 @@ add normalize.css back in
 all components should be completely independent (remove root.styl and vars dep)
 refactor to $el and $$el
 mixin support instead of class extension (ripple)
+solve cyclomatic complexity issues
+figure out rem vs px
+fix firefox ripple and dialog
