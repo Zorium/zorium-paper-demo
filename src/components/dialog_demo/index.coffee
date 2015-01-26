@@ -14,7 +14,7 @@ module.exports = class DialogDemo
       active: null
       dialogs: [
         {
-          button: new Button
+          $button: new Button
             text: 'title, content'
             isRaised: true
             onclick: =>
@@ -26,7 +26,7 @@ module.exports = class DialogDemo
               @toggle()
         }
         {
-          button: new Button
+          $button: new Button
             text: 'title, content, actions'
             isRaised: true
             onclick: =>
@@ -52,7 +52,7 @@ module.exports = class DialogDemo
               @toggle()
         }
         {
-          button: new Button
+          $button: new Button
             text: 'content, actions'
             isRaised: true
             onclick: =>
@@ -90,4 +90,4 @@ module.exports = class DialogDemo
       z '.active', active
       _.map dialogs, (dialog) ->
         z '.demo',
-          dialog.button
+          dialog.$button

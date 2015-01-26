@@ -14,8 +14,8 @@ components = [
 module.exports = class HomePage
   constructor: ->
     @state = z.state
-      components: _.map components, (component) ->
-        new component()
+      components: _.map components, (Component) ->
+        new Component()
 
   render: ({components}) ->
     z 'div', components
