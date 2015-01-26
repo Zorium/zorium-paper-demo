@@ -1,4 +1,5 @@
 z = require 'zorium'
+_ = require 'lodash'
 
 styles = require './index.styl'
 

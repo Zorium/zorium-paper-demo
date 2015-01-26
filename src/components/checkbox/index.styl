@@ -24,7 +24,7 @@ json('../../vars.json')
   transform: translateZ(0)
 
   &[checked]
-    .checkmark
+    > .checkmark
       display: inline-block
       animation: z-checkmark-expand 140ms ease-out forwards
 
@@ -32,33 +32,33 @@ json('../../vars.json')
     pointer-events: none
 
   &.light
-    .checkbox
+    > .checkbox
       border-color: $black54
 
     &[disabled]
-      .checkbox
+      > .checkbox
         border-color: $black26
 
     &[disabled][checked]
-      .checkbox
+      > .checkbox
         border: none
         background: $black26
 
   &.dark
-    .checkbox
+    > .checkbox
       border-color: $white70
 
     &[disabled]
-      .checkbox
+      > .checkbox
         border-color: $white30
 
     &[disabled][checked]
-      .checkbox
+      > .checkbox
         border: none
         background: $white30
 
 
-  .checkbox
+  > .checkbox
     position: absolute
     display: inline-block
     width: 18px
@@ -74,7 +74,7 @@ json('../../vars.json')
     transition: background-color 140ms, border-color 140ms
 
 
-  .checkmark
+  > .checkmark
     transform: rotate(45deg)
     position: absolute
     display: none

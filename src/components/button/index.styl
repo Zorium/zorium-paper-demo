@@ -20,7 +20,6 @@ $white12 = alpha(#fff, 0.12)
   min-height: 4.8rem
   min-width: 4.8rem
   display: inline-block
-  line-height: 4.8rem
   position: relative
   background: transparent
   text-align: center
@@ -37,7 +36,7 @@ $white12 = alpha(#fff, 0.12)
     min-width: 8.8rem
     min-height: 3.6rem
     line-height: 3.6rem
-    margin: 0 0.4rem
+    margin: 0.4rem
     background: transparent
     text-align: center
     outline: none
@@ -45,6 +44,9 @@ $white12 = alpha(#fff, 0.12)
     user-select: none
     cursor: pointer
     overflow: hidden
+
+    &.short
+      min-width: 4.8rem
 
     &.light-text
       color: $white

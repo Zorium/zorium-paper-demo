@@ -1,6 +1,8 @@
 z = require 'zorium'
+_ = require 'lodash'
 
 components = [
+  require '../../components/dialog_demo'
   require '../../components/checkbox_demo'
   require '../../components/radio_button_demo'
   require '../../components/button_demo'
