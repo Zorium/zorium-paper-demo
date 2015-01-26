@@ -1,0 +1,37 @@
+@require 'nib'
+@require '../../root'
+
+json('../../vars.json')
+
+$black26 = alpha(#000, 0.26)
+$black12 = alpha(#000, 0.12)
+$white30 = alpha(#fff, 0.30)
+$white12 = alpha(#fff, 0.12)
+
+.z-floating-action-button
+  z-shadow-1()
+  height: 5.6rem
+  width: 5.6rem
+  display: inline-block
+  position: relative
+  background: transparent
+  outline: none
+  user-select: none
+  cursor: pointer
+  border-radius: 50%
+  overflow: hidden
+
+  .icon-container
+    width: 24px
+    height: 24px
+    margin: 16px auto
+
+  &.mini
+    height: 4.0rem
+    width: 4.0rem
+
+    .icon-container
+      margin: 8px auto
+
+  &:active
+    z-shadow-2()
