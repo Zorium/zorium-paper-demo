@@ -4,13 +4,11 @@ Ripple = require '../ripple'
 styles = require './index.styl'
 styleVars = require '../../vars.json'
 
-module.exports = class Button extends Ripple
+module.exports = class Button
   constructor: ({
     text, isRaised, isDisabled, isTextLight, onclick,
     isDark, isShort, inkColor, color200, color500, color600, color700
     }) ->
-    super()
-
     styles.use()
 
     isRaised ?= false
@@ -34,6 +32,7 @@ module.exports = class Button extends Ripple
       color500
       color600
       color700
+      $ripple: new Ripple()
     }
 
   buttonClass: =>
@@ -50,7 +49,7 @@ module.exports = class Button extends Ripple
 
   render: ({
     text, isDisabled, listeners, inkColor,
-    color200, color500, color600, color700
+    color200, color500, color600, color700, $ripple
     }) =>
 
     z '.z-button',
@@ -63,9 +62,9 @@ module.exports = class Button extends Ripple
           onmouseout: z.ev (e, $$el) ->
             $$el.style.backgroundColor = color500
 
-          onmousedown: z.ev (e, $$el) =>
+          onmousedown: z.ev (e, $$el) ->
             $$el.style.backgroundColor = color700
-            @ripple $$el, inkColor or color200, e.clientX, e.clientY
+            $ripple.ripple $$el, inkColor or color200, e.clientX, e.clientY
 
           onmouseup: z.ev (e, $$el) ->
             $$el.style.backgroundColor = color600

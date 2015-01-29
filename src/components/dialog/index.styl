@@ -14,7 +14,7 @@ json('../../vars.json')
   justify-content: center
   z-index: 1000000
 
-  .backdrop
+  > .backdrop
     position: fixed
     top: 0
     left: 0
@@ -24,25 +24,25 @@ json('../../vars.json')
     opacity: 0.4
     z-index: 1000000
 
-  .dialog
+  > .dialog
     z-shadow-3()
     z-index: 1000003
     background: $white
     min-width: 280px
     padding-bottom: 8px
 
-    .info
+    > .info
       padding: 24px 24px 16px 24px
 
-      .title
+      > .title
         z-font-title()
         margin-bottom: 16px
 
-      .content
+      > .content
         z-font-body1()
         color: $black54
 
-    .actions
+    > .actions
       text-align: right
       box-sizing: border-box
       padding: 0 12px

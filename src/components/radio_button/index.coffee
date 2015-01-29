@@ -4,9 +4,8 @@ Ripple = require '../ripple'
 styles = require './index.styl'
 styleVars = require '../../vars.json'
 
-module.exports = class RadioButtom extends Ripple
+module.exports = class RadioButtom
   constructor: ({color500, isChecked, isDisabled, isDark}) ->
-    super()
     styles.use()
 
     isChecked ?= false
@@ -18,6 +17,7 @@ module.exports = class RadioButtom extends Ripple
       isChecked
       isDisabled
       isDark
+      $ripple: new Ripple()
     }
 
   toggle: =>
@@ -33,20 +33,20 @@ module.exports = class RadioButtom extends Ripple
       isDisabled and '[disabled]'
     ]).join('')
 
-  render: ({color500, isChecked, isDisabled, isDark}) =>
+  render: ({color500, isChecked, isDisabled, isDark, $ripple}) =>
     z @radioButtonClass(),
       {
         onmousedown: z.ev (e, $$el) =>
           unless isDisabled
             if isChecked
               if isDark
-                @ripple $$el, styleVars.$grey200,
+                $ripple.ripple $$el, styleVars.$grey200,
                   e.clientX, e.clientY, true, true
               else
-                @ripple $$el, styleVars.$grey800,
+                $ripple.ripple $$el, styleVars.$grey800,
                   e.clientX, e.clientY, true, true
             else
-              @ripple $$el, color500, e.clientX, e.clientY, true, true
+              $ripple.ripple $$el, color500, e.clientX, e.clientY, true, true
             @toggle()
       },
       z '.ring', {

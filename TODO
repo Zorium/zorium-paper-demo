@@ -1,6 +1,3 @@
-two-way data binding ideas
-cleaner param pass-through
-mixin support instead of class extension (ripple)
 add normalize.css back in
 move vars.json to npm
 all components should be completely independent (remove root.styl and vars dep)
