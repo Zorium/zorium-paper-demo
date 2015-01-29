@@ -48,22 +48,17 @@ module.exports = class Input
 
   render: ({color500, hintText, isFloating,
             isDisabled, value, isFocused, error, isDark}) ->
-    o_value = @o_value
-    o_isFocused = @o_isFocused
-
     z ".z-input#{isDark and '.dark' or ''}#{isFloating and '.floating' or ''}",
       z @hintClass(),
         hintText
       z "input.input#{isDisabled and '[disabled]' or ''}",
         value: value
-        # coffeelint: disable=missing_fat_arrows
-        oninput: ->
-          o_value.set this.value
-        onfocus: ->
-          o_isFocused.set true
-        onblur: ->
-          o_isFocused.set false
-        # coffeelint: enable=missing_fat_arrows
+        oninput: z.ev (e, $$el) =>
+          @o_value.set $$el.value
+        onfocus: z.ev (e, $$el) =>
+          @o_isFocused.set true
+        onblur: z.ev (e, $$el) =>
+          @o_isFocused.set false
       z @underlineClass(),
           style:
             backgroundColor: if isFocused and not error? then color500 else null

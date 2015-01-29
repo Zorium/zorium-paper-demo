@@ -21,14 +21,10 @@ module.exports = class FloatingActionButton extends Ripple
     }
 
   render: ({icon, color500, isMini, listeners}) ->
-    ripple = @ripple
-
     z ".z-floating-action-button#{isMini and '.mini' or ''}", {
       onclick: listeners.onclick
-      # coffeelint: disable=missing_fat_arrows
-      onmousedown: (e) ->
-        ripple this, styleVars.$white70, e.clientX, e.clientY
-      # coffeelint: enable=missing_fat_arrows
+      onmousedown: z.ev (e, $$el) =>
+        @ripple $$el, styleVars.$white70, e.clientX, e.clientY
 
       style:
         backgroundColor: color500

@@ -18,7 +18,6 @@ module.exports = class DialogDemo
             text: 'title, content'
             isRaised: true
             onclick: =>
-              console.log 'what'
               @toggle(0)
           $el: new Dialog
             title: 'This is a title'
@@ -89,6 +88,7 @@ module.exports = class DialogDemo
   render: ({dialogs, active}) ->
     z '.z-dialog-demo',
       z '.active', active
-      _.map dialogs, (dialog) ->
-        z '.demo',
-          dialog.$button
+      z '.x',
+        _.map dialogs, (dialog) ->
+          z '.demo',
+            dialog.$button

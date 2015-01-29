@@ -52,24 +52,23 @@ module.exports = class Button extends Ripple
     text, isDisabled, listeners, inkColor,
     color200, color500, color600, color700
     }) =>
-    ripple = @ripple
 
     z '.z-button',
       z @buttonClass(),
         {
           onclick: listeners.onclick
-          # coffeelint: disable=missing_fat_arrows
-          onmouseover: ->
-            @style.backgroundColor = color600
-          onmouseout: ->
-            @style.backgroundColor = color500
-          onmousedown: (e) ->
-            @style.backgroundColor = color700
-            ripple this, inkColor or color200, e.clientX, e.clientY
+          onmouseover: z.ev (e, $$el) ->
+            $$el.style.backgroundColor = color600
 
-          onmouseup: ->
-            @style.backgroundColor = color600
-          # coffeelint: enable=missing_fat_arrows
+          onmouseout: z.ev (e, $$el) ->
+            $$el.style.backgroundColor = color500
+
+          onmousedown: z.ev (e, $$el) =>
+            $$el.style.backgroundColor = color700
+            @ripple $$el, inkColor or color200, e.clientX, e.clientY
+
+          onmouseup: z.ev (e, $$el) ->
+            $$el.style.backgroundColor = color600
 
           style:
             backgroundColor: if isDisabled then null else color500

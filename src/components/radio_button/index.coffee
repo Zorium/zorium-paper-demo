@@ -34,25 +34,20 @@ module.exports = class RadioButtom extends Ripple
     ]).join('')
 
   render: ({color500, isChecked, isDisabled, isDark}) =>
-    ripple = @ripple
-    toggle = @toggle
-
     z @radioButtonClass(),
       {
-        # coffeelint: disable=missing_fat_arrows
-        onmousedown: (e) ->
+        onmousedown: z.ev (e, $$el) =>
           unless isDisabled
             if isChecked
               if isDark
-                ripple this, styleVars.$grey200,
+                @ripple $$el, styleVars.$grey200,
                   e.clientX, e.clientY, true, true
               else
-                ripple this, styleVars.$grey800,
+                @ripple $$el, styleVars.$grey800,
                   e.clientX, e.clientY, true, true
             else
-              ripple this, color500, e.clientX, e.clientY, true, true
-            toggle()
-        # coffeelint: enable=missing_fat_arrows
+              @ripple $$el, color500, e.clientX, e.clientY, true, true
+            @toggle()
       },
       z '.ring', {
         style:
