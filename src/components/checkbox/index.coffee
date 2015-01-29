@@ -5,7 +5,7 @@ styles = require './index.styl'
 styleVars = require '../../vars.json'
 
 module.exports = class RadioButtom extends Ripple
-  constructor: ({color500, color200, isChecked, isDisabled, isDark}) ->
+  constructor: ({color500, isChecked, isDisabled, isDark}) ->
     super()
     styles.use()
 
@@ -15,7 +15,6 @@ module.exports = class RadioButtom extends Ripple
 
     @state = z.state {
       color500
-      color200
       isChecked
       isDisabled
       isDark
@@ -34,7 +33,7 @@ module.exports = class RadioButtom extends Ripple
       isDisabled and '[disabled]'
     ]).join('')
 
-  render: ({color500, color200, isChecked, isDisabled, isDark}) =>
+  render: ({color500, isChecked, isDisabled, isDark}) =>
     ripple = @ripple
     toggle = @toggle
 
@@ -51,7 +50,7 @@ module.exports = class RadioButtom extends Ripple
                 ripple this, styleVars.$grey800,
                   e.clientX, e.clientY, true, true
             else
-              ripple this, color200, e.clientX, e.clientY, true, true
+              ripple this, color500, e.clientX, e.clientY, true, true
 
             toggle()
 

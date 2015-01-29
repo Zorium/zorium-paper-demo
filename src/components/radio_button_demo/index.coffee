@@ -12,39 +12,31 @@ module.exports = class RadioButtonDemo
       light: [
         new RadioButton
           color500: styleVars.$blue500
-          color200: styleVars.$blue200
         new RadioButton
           color500: styleVars.$blue500
-          color200: styleVars.$blue200
           isChecked: true
         new RadioButton
           color500: styleVars.$blue500
-          color200: styleVars.$blue200
           isDisabled: true
         new RadioButton
           color500: styleVars.$blue500
-          color200: styleVars.$blue200
           isChecked: true
           isDisabled: true
       ]
       dark: [
         new RadioButton
           color500: styleVars.$blue500
-          color200: styleVars.$blue200
           isDark: true
         new RadioButton
           color500: styleVars.$blue500
-          color200: styleVars.$blue200
           isChecked: true
           isDark: true
         new RadioButton
           color500: styleVars.$blue500
-          color200: styleVars.$blue200
           isDisabled: true
           isDark: true
         new RadioButton
           color500: styleVars.$blue500
-          color200: styleVars.$blue200
           isChecked: true
           isDisabled: true
           isDark: true

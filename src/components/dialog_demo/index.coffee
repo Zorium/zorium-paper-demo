@@ -18,6 +18,7 @@ module.exports = class DialogDemo
             text: 'title, content'
             isRaised: true
             onclick: =>
+              console.log 'what'
               @toggle(0)
           $el: new Dialog
             title: 'This is a title'
