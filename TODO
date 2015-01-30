@@ -1,3 +1,2 @@
-add normalize.css back in
 move vars.json to npm
 all components should be completely independent (remove root.styl and vars dep)

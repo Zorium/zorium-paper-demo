@@ -43,7 +43,10 @@ new WebpackDevServer webpack({
     loaders: [
       { test: /\.coffee$/, loader: 'coffee' }
       { test: /\.json$/, loader: 'json' }
-      { test: /\.styl$/, loader: 'style/useable!css!stylus' }
+      {
+        test: /\.styl$/
+        loader: 'style/useable!css!stylus?paths=bower_components'
+      }
     ]
   plugins: [
     new webpack.HotModuleReplacementPlugin()
