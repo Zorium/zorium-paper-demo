@@ -61,6 +61,6 @@
     "stylus-loader": "0.5.0",
     "transform-loader": "0.2.1",
     "webpack": "1.4.11",
-    "zorium": "^0.6.3"
+    "zorium": "^0.6.5"
   }
 }

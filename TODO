@@ -1,3 +1,1 @@
-z.class {key} returns class string (serialize state as classes)
-or z {key, key2} (in lieu of tag, which defaults to div)
 server side rendering

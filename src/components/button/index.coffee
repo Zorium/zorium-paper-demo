@@ -12,6 +12,7 @@ module.exports = class Button
     styles.use()
 
     isRaised ?= false
+    isFlat = not isRaised
     isDisabled ?= false
     isDark ?= false
     isTextLight ?= false
@@ -23,6 +24,7 @@ module.exports = class Button
       listeners:
         onclick: onclick
       isRaised
+      isFlat
       isDisabled
       isTextLight
       isDark
@@ -35,26 +37,25 @@ module.exports = class Button
       $ripple: new Ripple()
     }
 
-  buttonClass: =>
-    {isTextLight, isRaised, isDisabled, isShort, isDark} = @state()
-
-    _.filter([
-      '.button'
-      isTextLight and '.light-text'
-      isRaised and '.raised' or '.flat'
-      isDark and '.dark'
-      isDisabled and '[disabled]'
-      isShort and '.short'
-    ]).join('')
-
   render: ({
     text, isDisabled, listeners, inkColor,
-    color200, color500, color600, color700, $ripple
-    }) =>
+    color200, color500, color600, color700, $ripple,
+    isTextLight, isRaised, isShort, isDark, isFlat
+    }) ->
 
     z '.z-button',
-      z @buttonClass(),
+      className: z.classKebab {
+        isTextLight
+        isRaised
+        isFlat
+        isShort
+        isDark
+      }
+      z '.button',
         {
+          attributes:
+            if isDisabled
+              disabled: true
           onclick: listeners.onclick
           onmouseover: z.ev (e, $$el) ->
             $$el.style.backgroundColor = color600

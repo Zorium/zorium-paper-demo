@@ -3,11 +3,6 @@
 
 json('zorium/colors.json')
 
-$black26 = alpha(#000, 0.26)
-$black12 = alpha(#000, 0.12)
-$white30 = alpha(#fff, 0.30)
-$white12 = alpha(#fff, 0.12)
-
 .z-button
   min-height: 48px
   min-width: 48px
@@ -38,40 +33,17 @@ $white12 = alpha(#fff, 0.12)
     cursor: pointer
     overflow: hidden
 
-    &.short
-      min-width: 48px
-
-    &.light-text
-      color: $white
-
     &[disabled]
       cursor: auto
       pointer-events: none
 
-    &.flat
-      &:hover
-        background: alpha(#999, 0.20)
 
-      &:active
-        background: alpha(#999, 0.40)
+  &.is-text-light
+    > .button
+      color: $white
 
-      &[disabled]
-        color: $black26
-
-      &.dark
-        color: $white
-
-        &:hover
-          background: alpha(#ccc, 0.15)
-
-        &:active
-          background: alpha(#ccc, 0.25)
-
-        &[disabled]
-          color: alpha(#fff, 0.30)
-
-
-    &.raised
+  &.is-raised
+    > .button
       z-shadow-1()
 
       &:active
@@ -82,13 +54,36 @@ $white12 = alpha(#fff, 0.12)
         background: $black12
         color: $black26
 
-      &.dark
-        z-shadow-1()
+  &.is-raised&.is-dark
+    > .button
+      &[disabled]
+        background: $white12
+        color: $white30
 
-        &:active
-          z-shadow-2()
+  &.is-short
+    > .button
+      min-width: 48px
 
-        &[disabled]
-          box-shadow: none
-          background: $white12
-          color: $white30
+  &.is-flat
+    > .button
+      &:hover
+        background: alpha(#999, 0.20)
+
+      &:active
+        background: alpha(#999, 0.40)
+
+      &[disabled]
+        color: $black26
+
+  &.is-flat&.is-dark
+    > .button
+      color: $white
+
+      &:hover
+        background: alpha(#ccc, 0.15)
+
+      &:active
+        background: alpha(#ccc, 0.25)
+
+      &[disabled]
+        color: alpha(#fff, 0.30)
