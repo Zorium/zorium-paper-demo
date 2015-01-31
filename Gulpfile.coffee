@@ -81,7 +81,8 @@ gulp.task 'scripts:test', ->
         { test: /\.json$/, loader: 'json' }
         {
           test: /\.styl$/
-          loader: 'style/useable!css!stylus?paths=bower_components'
+          loader: 'style/useable!css!stylus?' +
+                  'paths[]=bower_components&paths[]=node_modules'
         }
       ]
     plugins: [
@@ -131,7 +132,8 @@ gulp.task 'scripts:prod', ->
         { test: /\.json$/, loader: 'json' }
         {
           test: /\.styl$/
-          loader: 'style/useable!css!stylus?paths=bower_components'
+          loader: 'style/useable!css!stylus?' +
+                  'paths[]=bower_components&paths[]=node_modules'
         }
       ]
     plugins: [

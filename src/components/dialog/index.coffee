@@ -2,7 +2,7 @@ z = require 'zorium'
 _ = require 'lodash'
 
 styles = require './index.styl'
-styleVars = require '../../vars.json'
+styleVars = require 'zorium/colors.json'
 
 module.exports = class Dialog
   constructor: ({title, content, actions, onleave}) ->

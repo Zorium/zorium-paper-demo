@@ -2,7 +2,7 @@ z = require 'zorium'
 
 Ripple = require '../ripple'
 styles = require './index.styl'
-styleVars = require '../../vars.json'
+styleVars = require 'zorium/colors.json'
 
 module.exports = class RadioButtom
   constructor: ({color500, isChecked, isDisabled, isDark}) ->

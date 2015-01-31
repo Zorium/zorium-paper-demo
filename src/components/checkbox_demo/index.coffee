@@ -2,7 +2,7 @@ z = require 'zorium'
 
 Checkbox = require '../checkbox'
 styles = require './index.styl'
-styleVars = require '../../vars.json'
+styleVars = require 'zorium/colors.json'
 
 module.exports = class CheckboxDemo
   constructor: ->

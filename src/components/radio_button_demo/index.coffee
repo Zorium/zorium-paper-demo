@@ -2,7 +2,7 @@ z = require 'zorium'
 
 RadioButton = require '../radio_button'
 styles = require './index.styl'
-styleVars = require '../../vars.json'
+styleVars = require 'zorium/colors.json'
 
 module.exports = class RadioButtonDemo
   constructor: ->

@@ -1,7 +1,7 @@
 z = require 'zorium'
 
 styles = require './index.styl'
-styleVars = require '../../vars.json'
+styleVars = require 'zorium/colors.json'
 
 module.exports = class Input
   constructor: ({color500, hintText, isFloating,

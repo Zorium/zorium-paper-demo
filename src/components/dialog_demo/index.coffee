@@ -4,7 +4,7 @@ _ = require 'lodash'
 Button = require '../button'
 Dialog = require '../dialog'
 styles = require './index.styl'
-styleVars = require '../../vars.json'
+styleVars = require 'zorium/colors.json'
 
 module.exports = class DialogDemo
   constructor: ->
