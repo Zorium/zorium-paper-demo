@@ -5,19 +5,27 @@ styles = require './index.styl'
 styleVars = require 'zorium/colors.json'
 
 module.exports = class Button
-  constructor: ({
-    text, isRaised, isDisabled, isTextLight, onclick,
-    isDark, isShort, inkColor, color200, color500, color600, color700
-    }) ->
+  constructor: ({text, isRaised, isDisabled,
+                 onclick, isDark, isShort, colors}) ->
     styles.use()
 
     isRaised ?= false
     isFlat = not isRaised
     isDisabled ?= false
     isDark ?= false
-    isTextLight ?= false
     onclick ?= (-> null)
-    color200 ?= styleVars.$grey800
+    colors ?= {}
+
+    colors = _.defaults colors, {
+      cText: if colors.ink and not isDisabled \
+                   then colors.ink
+                   else null
+      c200: styleVars.$grey800
+      c500: null
+      c600: null
+      c700: null
+      ink: null
+    }
 
     @state = z.state {
       text
@@ -26,26 +34,18 @@ module.exports = class Button
       isRaised
       isFlat
       isDisabled
-      isTextLight
       isDark
       isShort
-      inkColor
-      color200
-      color500
-      color600
-      color700
+      colors
+      backgroundColor: if isDisabled then null else colors.c500
       $ripple: new Ripple()
     }
 
-  render: ({
-    text, isDisabled, listeners, inkColor,
-    color200, color500, color600, color700, $ripple,
-    isTextLight, isRaised, isShort, isDark, isFlat
-    }) ->
+  render: ({text, isDisabled, listeners, $ripple, isRaised,
+            isShort, isDark, isFlat, backgroundColor, colors}) =>
 
     z '.z-button',
       className: z.classKebab {
-        isTextLight
         isRaised
         isFlat
         isShort
@@ -57,21 +57,21 @@ module.exports = class Button
             if isDisabled
               disabled: true
           onclick: listeners.onclick
-          onmouseover: z.ev (e, $$el) ->
-            $$el.style.backgroundColor = color600
+          onmouseover: =>
+            @state.set backgroundColor: colors.c600
 
-          onmouseout: z.ev (e, $$el) ->
-            $$el.style.backgroundColor = color500
+          onmouseout: =>
+            @state.set backgroundColor: colors.c500
 
-          onmousedown: z.ev (e, $$el) ->
-            $$el.style.backgroundColor = color700
-            $ripple.ripple $$el, inkColor or color200, e.clientX, e.clientY
+          onmousedown: z.ev (e, $$el) =>
+            @state.set backgroundColor: colors.c700
+            $ripple.ripple $$el, colors.ink or colors.c200, e.clientX, e.clientY
 
-          onmouseup: z.ev (e, $$el) ->
-            $$el.style.backgroundColor = color600
+          onmouseup: z.ev (e, $$el) =>
+            @state.set backgroundColor: colors.c600
 
           style:
-            backgroundColor: if isDisabled then null else color500
-            color: if inkColor and not isDisabled then inkColor else null
+            backgroundColor: backgroundColor
+            color: if isDisabled then null else colors.cText
         },
         text
