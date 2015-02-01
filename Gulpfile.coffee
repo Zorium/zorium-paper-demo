@@ -1,5 +1,6 @@
 _ = require 'lodash'
 del = require 'del'
+path = require 'path'
 gulp = require 'gulp'
 karma = require('karma').server
 mocha = require 'gulp-mocha'
@@ -94,9 +95,15 @@ gulp.task 'scripts:test', ->
         }
       ]
     plugins: [
+      new webpack.ResolverPlugin(
+        new webpack.ResolverPlugin.DirectoryDescriptionFilePlugin(
+          'bower.json', ['main']
+        )
+      )
       new RewirePlugin()
     ]
     resolve:
+      root: [path.join(__dirname, 'bower_components')]
       extensions: ['.coffee', '.js', '.json', '']
       # browser-builtins is for tests requesting native node modules
       modulesDirectories: ['web_modules', 'node_modules', './src',
@@ -144,9 +151,15 @@ gulp.task 'scripts:prod', ->
         }
       ]
     plugins: [
+      new webpack.ResolverPlugin(
+        new webpack.ResolverPlugin.DirectoryDescriptionFilePlugin(
+          'bower.json', ['main']
+        )
+      )
       new webpackSource.optimize.UglifyJsPlugin()
     ]
     resolve:
+      root: [path.join(__dirname, 'bower_components')]
       extensions: ['.coffee', '.js', '.json', '']
   .pipe rename 'bundle.js'
   .pipe gulp.dest paths.dist + '/js/'

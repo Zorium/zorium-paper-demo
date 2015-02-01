@@ -1,5 +1,6 @@
 #!/usr/bin/env coffee
 log = require 'clay-loglevel'
+path = require 'path'
 
 app = require '../server'
 webpack = require 'webpack'
@@ -50,9 +51,15 @@ new WebpackDevServer webpack({
       }
     ]
   plugins: [
+    new webpack.ResolverPlugin(
+      new webpack.ResolverPlugin.DirectoryDescriptionFilePlugin(
+        'bower.json', ['main']
+      )
+    )
     new webpack.HotModuleReplacementPlugin()
   ]
   resolve:
+    root: [path.join(__dirname, '/../bower_components')]
     extensions: ['.coffee', '.js', '.json', '']
 }),
   publicPath: "//#{webpackDevHostname}:#{webpackDevPort}/js/"

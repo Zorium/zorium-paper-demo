@@ -24,9 +24,6 @@
     "webpack-dev-server": "^1.6.5",
     "zock": "^0.0.11"
   },
-  "browser": {
-    "fetch": "./bower_components/fetch/fetch.js"
-  },
   "dependencies": {
     "bluebird": "^2.3.2",
     "bower": "^1.3.8",
