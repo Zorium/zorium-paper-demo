@@ -1,9 +1,9 @@
 z = require 'zorium'
 _ = require 'lodash'
-paperColors = require 'zorium/colors.json'
+paperColors = require 'zorium-paper/colors.json'
+Button = require 'zorium-paper/button'
+Dialog = require 'zorium-paper/dialog'
 
-Button = require '../button'
-Dialog = require '../dialog'
 styles = require './index.styl'
 
 

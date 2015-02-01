@@ -1,5 +1,5 @@
 z = require 'zorium'
-paperColors = require 'zorium/colors.json'
+paperColors = require 'zorium-paper/colors.json'
 Button = require 'zorium-paper/button'
 
 styles = require './index.styl'

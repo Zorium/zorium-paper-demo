@@ -1,7 +1,7 @@
 z = require 'zorium'
-paperColors = require 'zorium/colors.json'
+paperColors = require 'zorium-paper/colors.json'
+RadioButton = require 'zorium-paper/radio_button'
 
-RadioButton = require '../radio_button'
 styles = require './index.styl'
 
 module.exports = class RadioButtonDemo

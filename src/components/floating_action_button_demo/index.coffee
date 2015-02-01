@@ -1,7 +1,7 @@
 z = require 'zorium'
-paperColors = require 'zorium/colors.json'
+paperColors = require 'zorium-paper/colors.json'
+FloatingActionButton = require 'zorium-paper/floating_action_button'
 
-FloatingActionButton = require '../floating_action_button'
 styles = require './index.styl'
 
 module.exports = class FloatingActionButtonDemo

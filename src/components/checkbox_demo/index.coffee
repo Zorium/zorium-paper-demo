@@ -1,7 +1,7 @@
 z = require 'zorium'
-paperColors = require 'zorium/colors.json'
+paperColors = require 'zorium-paper/colors.json'
+Checkbox = require 'zorium-paper/checkbox'
 
-Checkbox = require '../checkbox'
 styles = require './index.styl'
 
 module.exports = class CheckboxDemo

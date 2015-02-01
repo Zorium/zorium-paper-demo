@@ -1,7 +1,7 @@
 z = require 'zorium'
-paperColors = require 'zorium/colors.json'
+paperColors = require 'zorium-paper/colors.json'
+Input = require 'zorium-paper/input'
 
-Input = require '../input'
 styles = require './index.styl'
 
 module.exports = class InputDemo
