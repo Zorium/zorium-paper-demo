@@ -1,8 +1,8 @@
 z = require 'zorium'
+paperColors = require 'zorium/colors.json'
 
 Checkbox = require '../checkbox'
 styles = require './index.styl'
-styleVars = require 'zorium/colors.json'
 
 module.exports = class CheckboxDemo
   constructor: ->
@@ -11,32 +11,40 @@ module.exports = class CheckboxDemo
     @state = z.state
       light: [
         new Checkbox
-          color500: styleVars.$blue500
+          colors:
+            c500: paperColors.$blue500
         new Checkbox
-          color500: styleVars.$blue500
+          colors:
+            c500: paperColors.$blue500
           isChecked: true
         new Checkbox
-          color500: styleVars.$blue500
+          colors:
+            c500: paperColors.$blue500
           isDisabled: true
         new Checkbox
-          color500: styleVars.$blue500
+          colors:
+            c500: paperColors.$blue500
           isChecked: true
           isDisabled: true
       ]
       dark: [
         new Checkbox
-          color500: styleVars.$blue500
+          colors:
+            c500: paperColors.$blue500
           isDark: true
         new Checkbox
-          color500: styleVars.$blue500
+          colors:
+            c500: paperColors.$blue500
           isChecked: true
           isDark: true
         new Checkbox
-          color500: styleVars.$blue500
+          colors:
+            c500: paperColors.$blue500
           isDisabled: true
           isDark: true
         new Checkbox
-          color500: styleVars.$blue500
+          colors:
+            c500: paperColors.$blue500
           isChecked: true
           isDisabled: true
           isDark: true

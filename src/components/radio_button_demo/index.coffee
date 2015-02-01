@@ -1,8 +1,8 @@
 z = require 'zorium'
+paperColors = require 'zorium/colors.json'
 
 RadioButton = require '../radio_button'
 styles = require './index.styl'
-styleVars = require 'zorium/colors.json'
 
 module.exports = class RadioButtonDemo
   constructor: ->
@@ -11,32 +11,40 @@ module.exports = class RadioButtonDemo
     @state = z.state
       light: [
         new RadioButton
-          color500: styleVars.$blue500
+          colors:
+            c500: paperColors.$blue500
         new RadioButton
-          color500: styleVars.$blue500
+          colors:
+            c500: paperColors.$blue500
           isChecked: true
         new RadioButton
-          color500: styleVars.$blue500
+          colors:
+            c500: paperColors.$blue500
           isDisabled: true
         new RadioButton
-          color500: styleVars.$blue500
+          colors:
+            c500: paperColors.$blue500
           isChecked: true
           isDisabled: true
       ]
       dark: [
         new RadioButton
-          color500: styleVars.$blue500
+          colors:
+            c500: paperColors.$blue500
           isDark: true
         new RadioButton
-          color500: styleVars.$blue500
+          colors:
+            c500: paperColors.$blue500
           isChecked: true
           isDark: true
         new RadioButton
-          color500: styleVars.$blue500
+          colors:
+            c500: paperColors.$blue500
           isDisabled: true
           isDark: true
         new RadioButton
-          color500: styleVars.$blue500
+          colors:
+            c500: paperColors.$blue500
           isChecked: true
           isDisabled: true
           isDark: true

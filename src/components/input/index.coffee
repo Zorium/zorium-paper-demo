@@ -1,13 +1,16 @@
 z = require 'zorium'
+paperColors = require 'zorium/colors.json'
 
 styles = require './index.styl'
-styleVars = require 'zorium/colors.json'
 
 module.exports = class Input
-  constructor: ({color500, hintText, isFloating,
+  constructor: ({colors, hintText, isFloating,
                 isDisabled, @o_value, @o_error, isDark}) ->
     styles.use()
 
+    colors ?= {
+      c500: paperColors.$black
+    }
     hintText ?= ''
     isFloating ?= false
     isDisabled ?= false
@@ -17,7 +20,7 @@ module.exports = class Input
     @o_isFocused = z.observe false
 
     @state = z.state {
-      color500
+      colors
       hintText
       isFocused: @o_isFocused
       value: @o_value
@@ -27,31 +30,21 @@ module.exports = class Input
       isDark
     }
 
-  hintClass: =>
-    {value, isFloating} = @state()
-
-    _.filter([
-      '.hint'
-      value isnt '' and not isFloating and '.hidden' or
-        value isnt '' and '.floating'
-    ]).join('')
-
-  underlineClass: =>
-    {isFocused, isDisabled, error} = @state()
-
-    _.filter([
-      '.underline'
-      isFocused and '.focused'
-      isDisabled and '.disabled'
-      error? and '.isError'
-    ]).join('')
-
-  render: ({color500, hintText, isFloating,
+  render: ({colors, hintText, isFloating,
             isDisabled, value, isFocused, error, isDark}) ->
-    z ".z-input#{isDark and '.dark' or ''}#{isFloating and '.floating' or ''}",
-      z @hintClass(),
-        hintText
-      z "input.input#{isDisabled and '[disabled]' or ''}",
+    z '.z-input',
+      className: z.classKebab {
+        isDark
+        isFloating
+        hasValue: value isnt ''
+        isFocused
+        isDisabled
+        isError: error?
+      }
+      z '.hint', hintText
+      z 'input.input',
+        attributes:
+          disabled: if isDisabled then true else undefined
         value: value
         oninput: z.ev (e, $$el) =>
           @o_value.set $$el.value
@@ -59,8 +52,9 @@ module.exports = class Input
           @o_isFocused.set true
         onblur: z.ev (e, $$el) =>
           @o_isFocused.set false
-      z @underlineClass(),
-          style:
-            backgroundColor: if isFocused and not error? then color500 else null
+      z '.underline',
+        style:
+          backgroundColor: if isFocused and not error? \
+                           then colors.c500 else null
       if error?
         z '.error', error

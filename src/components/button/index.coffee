@@ -1,8 +1,8 @@
 z = require 'zorium'
+paperColors = require 'zorium/colors.json'
 
 Ripple = require '../ripple'
 styles = require './index.styl'
-styleVars = require 'zorium/colors.json'
 
 module.exports = class Button
   constructor: ({text, isRaised, isDisabled,
@@ -20,7 +20,7 @@ module.exports = class Button
       cText: if colors.ink and not isDisabled \
                    then colors.ink
                    else null
-      c200: styleVars.$grey800
+      c200: paperColors.$grey800
       c500: null
       c600: null
       c700: null
@@ -37,12 +37,11 @@ module.exports = class Button
       isDark
       isShort
       colors
-      backgroundColor: if isDisabled then null else colors.c500
       $ripple: new Ripple()
     }
 
   render: ({text, isDisabled, listeners, $ripple, isRaised,
-            isShort, isDark, isFlat, backgroundColor, colors}) =>
+            isShort, isDark, isFlat, colors}) =>
 
     z '.z-button',
       className: z.classKebab {
@@ -65,13 +64,18 @@ module.exports = class Button
 
           onmousedown: z.ev (e, $$el) =>
             @state.set backgroundColor: colors.c700
-            $ripple.ripple $$el, colors.ink or colors.c200, e.clientX, e.clientY
+            $ripple.ripple {
+              $$el
+              color: colors.ink or colors.c200
+              mouseX: e.clientX
+              mouseY: e.clientY
+            }
 
           onmouseup: z.ev (e, $$el) =>
             @state.set backgroundColor: colors.c600
 
           style:
-            backgroundColor: backgroundColor
+            backgroundColor: if isDisabled then null else colors.c500
             color: if isDisabled then null else colors.cText
         },
         text

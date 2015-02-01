@@ -12,19 +12,6 @@ json('zorium/colors.json')
   text-align: inherit
   position: relative
 
-  &.floating
-    min-height: 72px
-
-    > .hint
-      top: 32px
-
-    > .input
-      padding: 32px 0 8px 0
-
-  &.dark
-    color: $white
-
-
   > .hint
     pointer-events: none
     position: absolute
@@ -35,13 +22,6 @@ json('zorium/colors.json')
     transform-origin: 0% 0%
     transition: top 0.2s cubic-bezier(0.4, 0, 0.2, 1),
                 font-size 0.2s cubic-bezier(0.4, 0, 0.2, 1)
-
-    &.hidden
-      display: none
-
-    &.floating
-      font-size: 12px
-      top: 16px
 
   > .input
     padding: 16px 0 8px 0
@@ -59,16 +39,6 @@ json('zorium/colors.json')
     width: 100%
     background: $grey600
 
-    &.focused
-      height: 2px
-
-    &.isError
-      background: $red500
-
-    &.disabled
-      background: none
-      border-bottom: 1px dashed $grey600
-
   > .error
     z-font-caption()
     color: $red500
@@ -76,3 +46,38 @@ json('zorium/colors.json')
     position: absolute
     pointer-events: none
     background: transparent
+
+  &.is-dark
+    color: $white
+
+  &.is-floating
+    min-height: 72px
+
+    > .hint
+      top: 32px
+
+    > .input
+      padding: 32px 0 8px 0
+
+  &.is-floating&.is-focused, &.is-floating&.has-value
+    > .hint
+      font-size: 12px
+      top: 16px
+      display: block
+
+  &:not(.is-floating)&.has-value
+    > .hint
+      display: none
+
+  &.is-focused
+    > .underline
+      height: 2px
+
+  &.is-error
+    > .underline
+      background: $red500
+
+  &.is-disabled
+    > .underline
+      background: none
+      border-bottom: 1px dashed $grey600

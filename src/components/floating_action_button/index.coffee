@@ -1,32 +1,41 @@
 z = require 'zorium'
+paperColors = require 'zorium/colors.json'
 
 Ripple = require '../ripple'
 styles = require './index.styl'
-styleVars = require 'zorium/colors.json'
 
 module.exports = class FloatingActionButton
-  constructor: ({icon, color500, isMini, onclick}) ->
+  constructor: ({$icon, colors, isMini, onclick}) ->
     styles.use()
 
     isMini ?= false
+    colors ?= {
+      c500: paperColors.$balck
+    }
 
     @state = z.state {
-      icon
-      color500
+      $icon
+      colors
       isMini
       $ripple: new Ripple()
       listeners:
         onclick: onclick
     }
 
-  render: ({icon, color500, isMini, listeners, $ripple}) ->
-    z ".z-floating-action-button#{isMini and '.mini' or ''}", {
+  render: ({$icon, colors, isMini, listeners, $ripple}) ->
+    z '.z-floating-action-button', {
+      className: z.classKebab {isMini}
       onclick: listeners.onclick
       onmousedown: z.ev (e, $$el) ->
-        $ripple.ripple $$el, styleVars.$white70, e.clientX, e.clientY
+        $ripple.ripple {
+          $$el
+          color: paperColors.$white70
+          mouseX: e.clientX
+          mouseY: e.clientY
+        }
 
       style:
-        backgroundColor: color500
+        backgroundColor: colors.c500
     },
     z '.icon-container',
-      icon
+      $icon

@@ -1,18 +1,20 @@
 z = require 'zorium'
 
 styles = require './index.styl'
-styleVars = require 'zorium/colors.json'
 
 module.exports = class Ripple
   constructor: ->
     styles.use()
 
-  ripple: ($$el, color, mouseX, mouseY, isCenter = false, isSmall = false) ->
-    $$rippleEffect = document.createElement 'div'
-    $$rippleEffect.className = "z-ripple #{isSmall and 'small' or ''}"
-    $$rippleEffect.style.backgroundColor = color
+  ripple: ({$$el, color, mouseX, mouseY, isSmall}) ->
+    isSmall ?= false
+    isCenter = not mouseX? and not mouseY?
 
     {width, height, top, left} = $$el.getBoundingClientRect()
+
+    $$rippleEffect = document.createElement 'div'
+    $$rippleEffect.className = "z-ripple #{isSmall and 'is-small' or ''}"
+    $$rippleEffect.style.backgroundColor = color
 
     x = mouseX - left
     y = mouseY - top

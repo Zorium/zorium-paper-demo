@@ -1,10 +1,11 @@
 z = require 'zorium'
 _ = require 'lodash'
+paperColors = require 'zorium/colors.json'
 
 Button = require '../button'
 Dialog = require '../dialog'
 styles = require './index.styl'
-styleVars = require 'zorium/colors.json'
+
 
 module.exports = class DialogDemo
   constructor: ->
@@ -39,13 +40,15 @@ module.exports = class DialogDemo
                 $el: new Button
                   text: 'disagree'
                   isShort: true
-                  inkColor: styleVars.$blue500
+                  colors:
+                    ink: paperColors.$blue500
               }
               {
                 $el: new Button
                   text: 'agree'
                   isShort: true
-                  inkColor: styleVars.$blue500
+                  colors:
+                    ink: paperColors.$blue500
               }
             ]
             onleave: =>
@@ -64,13 +67,15 @@ module.exports = class DialogDemo
                 $el: new Button
                   text: 'disagree'
                   isShort: true
-                  inkColor: styleVars.$blue500
+                  colors:
+                    ink: paperColors.$blue500
               }
               {
                 $el: new Button
                   text: 'agree'
                   isShort: true
-                  inkColor: styleVars.$blue500
+                  colors:
+                    ink: paperColors.$blue500
               }
             ]
             onleave: =>
@@ -88,7 +93,7 @@ module.exports = class DialogDemo
   render: ({dialogs, active}) ->
     z '.z-dialog-demo',
       z '.active', active
-      z '.x',
+      z 'div',
         _.map dialogs, (dialog) ->
           z '.demo',
             dialog.$button

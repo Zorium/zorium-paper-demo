@@ -3,11 +3,6 @@
 
 json('zorium/colors.json')
 
-$black54 = alpha(#000, 0.54)
-$black26 = alpha(#000, 0.26)
-$white70 = alpha(#fff, 0.70)
-$white30 = alpha(#fff, 0.30)
-
 .z-radio-button
   display: inline-block
   white-space: nowrap
@@ -31,6 +26,7 @@ $white30 = alpha(#fff, 0.30)
     border-radius: 50%
     border: solid 2px
     transition: border-color 0.28s
+    border-color: $black54
 
   > .fill
     position: absolute
@@ -51,18 +47,14 @@ $white30 = alpha(#fff, 0.30)
     > .fill
       transform: scale(1)
 
-  &.light
+  &[disabled]
     > .ring
-      border-color: $black54
+      border-color: $black26
 
-    &[disabled]
-      > .ring
-        border-color: $black26
+    > .fill
+      background: $black26
 
-      > .fill
-        background: $black26
-
-  &.dark
+  &.is-dark
     > .ring
       border-color: $white70
 

@@ -1,8 +1,8 @@
 z = require 'zorium'
+paperColors = require 'zorium/colors.json'
 
 Button = require '../button'
 styles = require './index.styl'
-styleVars = require 'zorium/colors.json'
 
 module.exports = class ButtonDemo
   constructor: ->
@@ -18,12 +18,12 @@ module.exports = class ButtonDemo
         new Button
           text: 'click me'
           colors:
-            ink: styleVars.$red500
+            ink: paperColors.$red500
         new Button
           text: 'click me'
           isDisabled: true
           colors:
-            ink: styleVars.$red500
+            ink: paperColors.$red500
       ]
       darkFlat: [
         new Button
@@ -37,54 +37,54 @@ module.exports = class ButtonDemo
           text: 'click me'
           isDark: true
           colors:
-            ink: styleVars.$red500
+            ink: paperColors.$red500
         new Button
           text: 'click me'
           isDisabled: true
           isDark: true
           colors:
-            ink: styleVars.$red500
+            ink: paperColors.$red500
       ]
       lightRaised: [
         new Button
           text: 'click me'
           isRaised: true
           colors:
-            cText: styleVars.$blue500Text
-            c200: styleVars.$blue200
-            c500: styleVars.$blue500
-            c600: styleVars.$blue600
-            c700: styleVars.$blue700
+            cText: paperColors.$blue500Text
+            c200: paperColors.$blue200
+            c500: paperColors.$blue500
+            c600: paperColors.$blue600
+            c700: paperColors.$blue700
         new Button
           text: 'click me'
           isRaised: true
           colors:
-            cText: styleVars.$blue500Text
-            c200: styleVars.$blue200
-            c500: styleVars.$blue500
-            c600: styleVars.$blue600
-            c700: styleVars.$blue700
+            cText: paperColors.$blue500Text
+            c200: paperColors.$blue200
+            c500: paperColors.$blue500
+            c600: paperColors.$blue600
+            c700: paperColors.$blue700
           isDisabled: true
         new Button
           text: 'click me'
           isRaised: true
           colors:
-            cText: styleVars.$red500
-            c200: styleVars.$blue200
-            c500: styleVars.$blue500
-            c600: styleVars.$blue600
-            c700: styleVars.$blue700
-            ink: styleVars.$red500
+            cText: paperColors.$red500
+            c200: paperColors.$blue200
+            c500: paperColors.$blue500
+            c600: paperColors.$blue600
+            c700: paperColors.$blue700
+            ink: paperColors.$red500
         new Button
           text: 'click me'
           isRaised: true
           colors:
-            cText: styleVars.$red500
-            c200: styleVars.$blue200
-            c500: styleVars.$blue500
-            c600: styleVars.$blue600
-            c700: styleVars.$blue700
-            ink: styleVars.$red500
+            cText: paperColors.$red500
+            c200: paperColors.$blue200
+            c500: paperColors.$blue500
+            c600: paperColors.$blue600
+            c700: paperColors.$blue700
+            ink: paperColors.$red500
           isDisabled: true
       ]
       darkRaised: [
@@ -92,44 +92,44 @@ module.exports = class ButtonDemo
           text: 'click me'
           isRaised: true
           colors:
-            cText: styleVars.$blue500Text
-            c200: styleVars.$blue200
-            c500: styleVars.$blue500
-            c600: styleVars.$blue600
-            c700: styleVars.$blue700
+            cText: paperColors.$blue500Text
+            c200: paperColors.$blue200
+            c500: paperColors.$blue500
+            c600: paperColors.$blue600
+            c700: paperColors.$blue700
           isDark: true
         new Button
           text: 'click me'
           isRaised: true
           colors:
-            cText: styleVars.$blue500Text
-            c200: styleVars.$blue200
-            c500: styleVars.$blue500
-            c600: styleVars.$blue600
-            c700: styleVars.$blue700
+            cText: paperColors.$blue500Text
+            c200: paperColors.$blue200
+            c500: paperColors.$blue500
+            c600: paperColors.$blue600
+            c700: paperColors.$blue700
           isDisabled: true
           isDark: true
         new Button
           text: 'click me'
           isRaised: true
           colors:
-            cText: styleVars.$red500
-            c200: styleVars.$blue200
-            c500: styleVars.$blue500
-            c600: styleVars.$blue600
-            c700: styleVars.$blue700
-            ink: styleVars.$red500
+            cText: paperColors.$red500
+            c200: paperColors.$blue200
+            c500: paperColors.$blue500
+            c600: paperColors.$blue600
+            c700: paperColors.$blue700
+            ink: paperColors.$red500
           isDark: true
         new Button
           text: 'click me'
           isRaised: true
           colors:
-            cText: styleVars.$red500
-            c200: styleVars.$blue200
-            c500: styleVars.$blue500
-            c600: styleVars.$blue600
-            c700: styleVars.$blue700
-            ink: styleVars.$red500
+            cText: paperColors.$red500
+            c200: paperColors.$blue200
+            c500: paperColors.$blue500
+            c600: paperColors.$blue600
+            c700: paperColors.$blue700
+            ink: paperColors.$red500
           isDisabled: true
           isDark: true
       ]

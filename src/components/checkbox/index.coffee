@@ -1,60 +1,58 @@
 z = require 'zorium'
+paperColors = require 'zorium/colors.json'
 
 Ripple = require '../ripple'
 styles = require './index.styl'
-styleVars = require 'zorium/colors.json'
 
 module.exports = class RadioButtom
-  constructor: ({color500, isChecked, isDisabled, isDark}) ->
+  constructor: ({colors, isChecked, isDisabled, isDark}) ->
     styles.use()
 
+    colors ?= {
+      c500: paperColors.$black
+    }
     isChecked ?= false
     isDisabled ?= false
     isDark ?= false
 
     @state = z.state {
-      color500
+      colors
       isChecked
       isDisabled
       isDark
       $ripple: new Ripple()
     }
 
-  toggle: =>
-    @state.set isChecked: not @state().isChecked
+  render: ({colors, isChecked, isDisabled, isDark, $ripple}) =>
+    checkboxColor = if isChecked and not isDisabled then colors.c500 \
+                    else null
+    rippleColor = switch
+      when isChecked and isDark
+        paperColors.$grey200
+      when isChecked
+        paperColors.$grey800
+      else colors.c500
 
-  checkboxClass: =>
-    {isDark, isChecked, isDisabled} = @state()
-
-    _.filter([
-      '.z-checkbox'
-      isDark and '.dark' or '.light'
-      isChecked and '[checked]'
-      isDisabled and '[disabled]'
-    ]).join('')
-
-  render: ({color500, isChecked, isDisabled, isDark, $ripple}) =>
-    z @checkboxClass(),
+    z '.z-checkbox',
       {
+        className: z.classKebab {
+          isDark
+        }
+        attributes:
+          disabled: if isDisabled then true else undefined
+          checked: if isChecked then true else undefined
         onmousedown: z.ev (e, $$el) =>
           unless isDisabled
-            if isChecked
-              if isDark
-                $ripple.ripple $$el, styleVars.$grey200,
-                  e.clientX, e.clientY, true, true
-              else
-                $ripple.ripple $$el, styleVars.$grey800,
-                  e.clientX, e.clientY, true, true
-            else
-              $ripple.ripple $$el, color500, e.clientX, e.clientY, true, true
-
-            @toggle()
+            $ripple.ripple {
+              $$el
+              color: rippleColor
+              isSmall: true
+            }
+            @state.set isChecked: not @state().isChecked
       },
       z '.checkbox', {
         style:
-          backgroundColor: if isChecked and not isDisabled then color500 \
-                           else null
-          borderColor: if isChecked and not isDisabled then color500 \
-                           else null
+          backgroundColor: checkboxColor
+          borderColor: checkboxColor
       }
       z '.checkmark'

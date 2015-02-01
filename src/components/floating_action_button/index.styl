@@ -3,11 +3,6 @@
 
 json('zorium/colors.json')
 
-$black26 = alpha(#000, 0.26)
-$black12 = alpha(#000, 0.12)
-$white30 = alpha(#fff, 0.30)
-$white12 = alpha(#fff, 0.12)
-
 .z-floating-action-button
   z-shadow-1()
   height: 56px
@@ -27,12 +22,12 @@ $white12 = alpha(#fff, 0.12)
     height: 24px
     margin: 16px auto
 
-  &.mini
+  &:active
+    z-shadow-2()
+
+  &.is-mini
     height: 40px
     width: 40px
 
     > .icon-container
       margin: 8px auto
-
-  &:active
-    z-shadow-2()

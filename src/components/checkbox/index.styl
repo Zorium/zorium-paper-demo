@@ -3,7 +3,7 @@
 
 json('zorium/colors.json')
 
-@keyframes z-checkmark-expand
+@keyframes z-checkbox-expand
   0%
     transform: rotate(70deg)
     height: 6px
@@ -24,41 +24,6 @@ json('zorium/colors.json')
   cursor: pointer
   transform: translateZ(0)
 
-  &[checked]
-    > .checkmark
-      display: inline-block
-      animation: z-checkmark-expand 140ms ease-out forwards
-
-  &[disabled]
-    pointer-events: none
-
-  &.light
-    > .checkbox
-      border-color: $black54
-
-    &[disabled]
-      > .checkbox
-        border-color: $black26
-
-    &[disabled][checked]
-      > .checkbox
-        border: none
-        background: $black26
-
-  &.dark
-    > .checkbox
-      border-color: $white70
-
-    &[disabled]
-      > .checkbox
-        border-color: $white30
-
-    &[disabled][checked]
-      > .checkbox
-        border: none
-        background: $white30
-
-
   > .checkbox
     position: absolute
     display: inline-block
@@ -73,6 +38,7 @@ json('zorium/colors.json')
     border-radius: 2px
     pointer-events: none
     transition: background-color 140ms, border-color 140ms
+    border-color: $black54
 
 
   > .checkmark
@@ -91,3 +57,32 @@ json('zorium/colors.json')
     border-right-width: 2px
     border-bottom-width: 2px
     border-color: $white
+
+  &[checked]
+    > .checkmark
+      display: inline-block
+      animation: z-checkbox-expand 140ms ease-out forwards
+
+  &[disabled]
+    pointer-events: none
+
+    > .checkbox
+      border-color: $black26
+
+  &[disabled][checked]
+    > .checkbox
+      border: none
+      background: $black26
+
+  &.is-dark
+    > .checkbox
+      border-color: $white70
+
+    &[disabled]
+      > .checkbox
+        border-color: $white30
+
+    &[disabled][checked]
+      > .checkbox
+        border: none
+        background: $white30

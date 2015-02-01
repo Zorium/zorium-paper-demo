@@ -1,18 +1,19 @@
 z = require 'zorium'
+paperColors = require 'zorium/colors.json'
 
 FloatingActionButton = require '../floating_action_button'
 styles = require './index.styl'
-styleVars = require 'zorium/colors.json'
 
-module.exports = class ButtonDemo
+module.exports = class FloatingActionButtonDemo
   constructor: ->
     styles.use()
 
     @state = z.state
       buttons: [
         new FloatingActionButton
-          color500: styleVars.$red500
-          icon: z '.div',
+          colors:
+            c500: paperColors.$red500
+          $icon: z '.div',
             style:
               display: 'inline-block'
               width: '20px'
@@ -25,8 +26,9 @@ module.exports = class ButtonDemo
             , 'Z'
         new FloatingActionButton
           isMini: true
-          color500: styleVars.$blue500
-          icon: z '.div',
+          colors:
+            c500: paperColors.$blue500
+          $icon: z '.div',
             style:
               width: '20px'
               height: '20px'
