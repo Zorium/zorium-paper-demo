@@ -20,7 +20,7 @@ log.enableAll()
 # Don't compact whitespace, because it breaks the javascript partial
 dust.optimizers.format = (ctx, node) -> node
 
-indexTpl = dust.compile fs.readFileSync('index.dust', 'utf-8'), 'index'
+indexTpl = dust.compile fs.readFileSync('src/index.dust', 'utf-8'), 'index'
 
 distJs = if config.ENV is config.ENVS.PROD \
           then fs.readFileSync('dist/js/bundle.js', 'utf-8')
@@ -76,10 +76,10 @@ renderHomePage = do ->
   page =
     inlineSource: config.ENV is config.ENVS.PROD
     webpackDevHostname: config.WEBPACK_DEV_HOSTNAME
-    title: 'Zorium Site'
-    description: 'Zorium Site - (╯°□°）╯︵ ┻━┻)'
+    title: 'Zorium Paper Demo'
+    description: 'Zorium Paper Demo - (╯°□°）╯︵ ┻━┻)'
     keywords: 'Zorium'
-    name: 'Zorium Site'
+    name: 'Zorium Paper Demo'
     twitterHandle: '@ZoriumJS'
     themeColor: '#00695C'
     favicon: '/images/zorium_icon_32.png'

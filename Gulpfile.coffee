@@ -1,33 +1,41 @@
 _ = require 'lodash'
+del = require 'del'
 gulp = require 'gulp'
-concat = require 'gulp-concat'
-nodemon = require 'gulp-nodemon'
-rename = require 'gulp-rename'
-clean = require 'gulp-clean'
-sourcemaps = require 'gulp-sourcemaps'
-runSequence = require 'gulp-run-sequence'
-coffeelint = require 'gulp-coffeelint'
 karma = require('karma').server
-minifyCss = require 'gulp-minify-css'
 mocha = require 'gulp-mocha'
-RewirePlugin = require 'rewire-webpack'
+rename = require 'gulp-rename'
+nodemon = require 'gulp-nodemon'
 webpack = require 'gulp-webpack'
+coffeelint = require 'gulp-coffeelint'
+runSequence = require 'run-sequence'
+RewirePlugin = require 'rewire-webpack'
 webpackSource = require 'webpack'
+clayLintConfig = require 'clay-coffeescript-style-guide'
 
-karmaConf = require './karma.defaults'
+karmaConf =
+  frameworks: ['mocha']
+  client:
+    useIframe: true
+    captureConsole: true
+    mocha:
+      timeout: 1000
+  files: [
+    'build/test/bundle.js'
+  ]
+  browsers: ['Chrome', 'Firefox']
 
 paths =
   static: './src/static/**/*'
-  scripts: ['./src/**/*.coffee', './*.coffee', './test/*/**/*.coffee']
-  serverTests: './test/server.coffee'
+  coffee: ['./src/**/*.coffee', './*.coffee', './test/*/**/*.coffee']
   root: './src/root.coffee'
   rootTests: './test/index.coffee'
+  rootServerTests: './test/server.coffee'
   dist: './dist/'
   build: './build/'
 
 # start the dev server, and auto-update
 gulp.task 'dev', ['assets:dev'], ->
-  gulp.start 'server'
+  gulp.start 'server:dev'
 
 # compile sources: src/* -> build/*
 gulp.task 'assets:dev', [
@@ -54,13 +62,13 @@ gulp.task 'test', [
   karma.start _.defaults(singleRun: true, karmaConf), process.exit
 
 # start the dev server
-gulp.task 'server', ->
+gulp.task 'server:dev', ->
   # Don't actually watch for changes, just run the server
   nodemon {script: 'bin/dev_server.coffee', ext: 'null', ignore: ['**/*.*']}
 
 # gulp-mocha will never exit on its own.
 gulp.task 'test:server', ['scripts:test'], ->
-  gulp.src paths.serverTests
+  gulp.src paths.rootServerTests
     .pipe mocha()
 
 gulp.task 'test:phantom', ['scripts:test'], (cb) ->
@@ -99,12 +107,12 @@ gulp.task 'scripts:test', ->
 
 # run coffee-lint
 gulp.task 'lint', ->
-  gulp.src paths.scripts
-    .pipe coffeelint()
+  gulp.src paths.coffee
+    .pipe coffeelint(null, clayLintConfig)
     .pipe coffeelint.reporter()
 
 gulp.task 'watch:test', ->
-  gulp.watch paths.scripts, ['test:phantom']
+  gulp.watch paths.coffee, ['test:phantom']
 
 gulp.task 'static:dev', ->
   gulp.src paths.static
@@ -115,9 +123,8 @@ gulp.task 'static:dev', ->
 #
 
 # rm -r dist
-gulp.task 'clean:dist', ->
-  gulp.src paths.dist, read: false
-    .pipe clean()
+gulp.task 'clean:dist', (cb) ->
+  del paths.dist, cb
 
 # init.coffee --> dist/js/bundle.min.js
 gulp.task 'scripts:prod', ->
