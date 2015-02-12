@@ -46,7 +46,7 @@
     "helmet": "^0.6.0",
     "json-loader": "^0.5.1",
     "karma": "^0.12.17",
-    "lodash": "^2.4.1",
+    "lodash": "https://registry.npmjs.org/lodash/-/lodash-2.4.1.tgz",
     "pm2": "^0.12.3",
     "promiz": "^1.0.0",
     "rewire-webpack": "^0.2.0",
@@ -54,6 +54,8 @@
     "style-loader": "^0.8.1",
     "stylus-loader": "^0.5.0",
     "transform-loader": "^0.2.1",
-    "webpack": "^1.4.11"
+    "webpack": "^1.5.0",
+    "zorium": "^0.6.8",
+    "zorium-paper": "^0.1.0"
   }
 }

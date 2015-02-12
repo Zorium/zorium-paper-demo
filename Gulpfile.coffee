@@ -6,11 +6,11 @@ karma = require('karma').server
 mocha = require 'gulp-mocha'
 rename = require 'gulp-rename'
 nodemon = require 'gulp-nodemon'
-webpack = require 'gulp-webpack'
+gulpWebpack = require 'gulp-webpack'
 coffeelint = require 'gulp-coffeelint'
 runSequence = require 'run-sequence'
 RewirePlugin = require 'rewire-webpack'
-webpackSource = require 'webpack'
+webpack = require 'webpack'
 clayLintConfig = require 'clay-coffeescript-style-guide'
 
 karmaConf =
@@ -80,7 +80,7 @@ gulp.task 'test:phantom', ['scripts:test'], (cb) ->
 
 gulp.task 'scripts:test', ->
   gulp.src paths.rootTests
-  .pipe webpack
+  .pipe gulpWebpack
     module:
       postLoaders: [
         { test: /\.coffee$/, loader: 'transform/cacheable?envify' }
@@ -136,7 +136,7 @@ gulp.task 'clean:dist', (cb) ->
 # init.coffee --> dist/js/bundle.min.js
 gulp.task 'scripts:prod', ->
   gulp.src paths.root
-  .pipe webpack
+  .pipe gulpWebpack
     module:
       postLoaders: [
         { test: /\.coffee$/, loader: 'transform/cacheable?envify' }
@@ -156,7 +156,7 @@ gulp.task 'scripts:prod', ->
           'bower.json', ['main']
         )
       )
-      new webpackSource.optimize.UglifyJsPlugin()
+      new webpack.optimize.UglifyJsPlugin()
     ]
     resolve:
       root: [path.join(__dirname, 'bower_components')]
