@@ -7209,8 +7209,8 @@
       }
     },
     "zorium": {
-      "version": "0.6.8",
-      "from": "zorium@^0.6.8",
+      "version": "0.7.0",
+      "from": "zorium@0.7.0",
       "dependencies": {
         "lodash": {
           "version": "3.2.0",
@@ -7356,8 +7356,9 @@
       }
     },
     "zorium-paper": {
-      "version": "0.1.0",
-      "from": "zorium-paper@^0.1.0",
+      "version": "0.2.0",
+      "from": "zorium-paper@0.2.0",
+      "resolved": "https://registry.npmjs.org/zorium-paper/-/zorium-paper-0.2.0.tgz",
       "dependencies": {
         "lodash": {
           "version": "3.2.0",

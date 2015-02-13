@@ -9,69 +9,64 @@ module.exports = class InputDemo
     styles.use()
 
     @state = z.state
-      light: [
-        new Input
-          hintText: 'hint text'
-          colors:
-            c500: paperColors.$blue500
-        new Input
-          hintText: 'hint text'
-          colors:
-            c500: paperColors.$blue500
-          o_error: z.observe 'Input is required'
-        new Input
-          hintText: 'hint text'
-          colors:
-            c500: paperColors.$blue500
-          isFloating: true
-        new Input
-          hintText: 'hint text'
-          colors:
-            c500: paperColors.$blue500
-          o_error: z.observe 'Input is required'
-          isFloating: true
-        new Input
-          hintText: 'hint text'
-          colors:
-            c500: paperColors.$blue500
-          isDisabled: true
-      ]
-      dark: [
-        new Input
-          hintText: 'hint text'
-          colors:
-            c500: paperColors.$blue500
-          isDark: true
-        new Input
-          hintText: 'hint text'
-          colors:
-            c500: paperColors.$blue500
-          o_error: z.observe 'Input is required'
-          isDark: true
-        new Input
-          hintText: 'hint text'
-          colors:
-            c500: paperColors.$blue500
-          isFloating: true
-          isDark: true
-        new Input
-          hintText: 'hint text'
-          colors:
-            c500: paperColors.$blue500
-          o_error: z.observe 'Input is required'
-          isFloating: true
-          isDark: true
-        new Input
-          hintText: 'hint text'
-          colors:
-            c500: paperColors.$blue500
-          isDisabled: true
-          isDark: true
-      ]
+      $inputs: _.map _.range(100), -> new Input()
+      $errors: _.map _.range(100), ->
+        new Input(o_error: z.observe 'Input is required')
 
-  render: ({light, dark}) ->
+  render: =>
+    {$inputs, $errors} = @state()
+
     z '.z-radio-button-demo',
       z '.light',
-        light
+        z $inputs[0],
+          hintText: 'hint text'
+          colors:
+            c500: paperColors.$blue500
+        z $errors[1],
+          hintText: 'hint text'
+          colors:
+            c500: paperColors.$blue500
+        z $inputs[2],
+          hintText: 'hint text'
+          colors:
+            c500: paperColors.$blue500
+          isFloating: true
+        z $errors[3],
+          hintText: 'hint text'
+          colors:
+            c500: paperColors.$blue500
+          isFloating: true
+        z $inputs[4],
+          hintText: 'hint text'
+          colors:
+            c500: paperColors.$blue500
+          isDisabled: true
       z '.dark',
-        dark
+        z $inputs[5],
+          hintText: 'hint text'
+          colors:
+            c500: paperColors.$blue500
+          isDark: true
+        z $errors[6],
+          hintText: 'hint text'
+          colors:
+            c500: paperColors.$blue500
+          isDark: true
+        z $inputs[7],
+          hintText: 'hint text'
+          colors:
+            c500: paperColors.$blue500
+          isFloating: true
+          isDark: true
+        z $errors[8],
+          hintText: 'hint text'
+          colors:
+            c500: paperColors.$blue500
+          isFloating: true
+          isDark: true
+        z $inputs[9],
+          hintText: 'hint text'
+          colors:
+            c500: paperColors.$blue500
+          isDisabled: true
+          isDark: true

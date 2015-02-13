@@ -9,50 +9,44 @@ module.exports = class CheckboxDemo
     styles.use()
 
     @state = z.state
-      light: [
-        new Checkbox
-          colors:
-            c500: paperColors.$blue500
-        new Checkbox
-          colors:
-            c500: paperColors.$blue500
-          isChecked: true
-        new Checkbox
-          colors:
-            c500: paperColors.$blue500
-          isDisabled: true
-        new Checkbox
-          colors:
-            c500: paperColors.$blue500
-          isChecked: true
-          isDisabled: true
-      ]
-      dark: [
-        new Checkbox
-          colors:
-            c500: paperColors.$blue500
-          isDark: true
-        new Checkbox
-          colors:
-            c500: paperColors.$blue500
-          isChecked: true
-          isDark: true
-        new Checkbox
-          colors:
-            c500: paperColors.$blue500
-          isDisabled: true
-          isDark: true
-        new Checkbox
-          colors:
-            c500: paperColors.$blue500
-          isChecked: true
-          isDisabled: true
-          isDark: true
-      ]
+      $unchecked: _.map _.range(100), -> new Checkbox()
+      $checked: _.map _.range(100), -> new Checkbox(isChecked: true)
 
-  render: ({light, dark}) ->
+  render: =>
+    {$unchecked, $checked} = @state()
+
     z '.z-checkbox-demo',
       z '.light',
-        light
+        z $unchecked[0],
+          colors:
+            c500: paperColors.$blue500
+        z $checked[1],
+          colors:
+            c500: paperColors.$blue500
+        z $unchecked[2],
+          colors:
+            c500: paperColors.$blue500
+          isDisabled: true
+        z $checked[3],
+          colors:
+            c500: paperColors.$blue500
+          isDisabled: true
       z '.dark',
-        dark
+        z $unchecked[4],
+          colors:
+            c500: paperColors.$blue500
+          isDark: true
+        z $checked[5],
+          colors:
+            c500: paperColors.$blue500
+          isDark: true
+        z $unchecked[6],
+          colors:
+            c500: paperColors.$blue500
+          isDisabled: true
+          isDark: true
+        z $checked[7],
+          colors:
+            c500: paperColors.$blue500
+          isDisabled: true
+          isDark: true

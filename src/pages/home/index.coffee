@@ -17,5 +17,6 @@ module.exports = class HomePage
       components: _.map components, (Component) ->
         new Component()
 
-  render: ({components}) ->
+  render: =>
+    {components} = @state()
     z 'div', components

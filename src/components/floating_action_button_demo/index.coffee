@@ -9,37 +9,37 @@ module.exports = class FloatingActionButtonDemo
     styles.use()
 
     @state = z.state
-      buttons: [
-        new FloatingActionButton
-          colors:
-            c500: paperColors.$red500
-          $icon: z '.div',
-            style:
-              display: 'inline-block'
-              width: '20px'
-              height: '20px'
-              margin: '2px'
-              background: 'black'
-              color: 'white'
-              textAlign: 'center'
-              lineHeight: '20px'
-            , 'Z'
-        new FloatingActionButton
-          isMini: true
-          colors:
-            c500: paperColors.$blue500
-          $icon: z '.div',
-            style:
-              width: '20px'
-              height: '20px'
-              margin: '2px'
-              background: 'black'
-              color: 'white'
-              textAlign: 'center'
-              lineHeight: '20px'
-            , 'Z'
-      ]
+      $normal: new FloatingActionButton()
+      $small: new FloatingActionButton()
 
-  render: ({buttons}) ->
+  render: =>
+    {$normal, $small} = @state()
     z '.z-floating-action-button-demo',
-      buttons
+      z $normal,
+        colors:
+          c500: paperColors.$red500
+        $icon: z '.div',
+          style:
+            display: 'inline-block'
+            width: '20px'
+            height: '20px'
+            margin: '2px'
+            background: 'black'
+            color: 'white'
+            textAlign: 'center'
+            lineHeight: '20px'
+          , 'Z'
+      z $small,
+        isMini: true
+        colors:
+          c500: paperColors.$blue500
+        $icon: z '.div',
+          style:
+            width: '20px'
+            height: '20px'
+            margin: '2px'
+            background: 'black'
+            color: 'white'
+            textAlign: 'center'
+            lineHeight: '20px'
+          , 'Z'
