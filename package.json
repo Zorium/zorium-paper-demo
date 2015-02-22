@@ -1,6 +1,6 @@
 {
   "name": "zorium-paper-demo",
-  "private": true,
+  "version": "0.1.0",
   "scripts": {
     "postinstall": "node_modules/bower/bin/bower install",
     "test": "NODE_ENV=test node_modules/gulp/bin/gulp.js test",
