@@ -2,6 +2,7 @@ z = require 'zorium'
 _ = require 'lodash'
 
 components = [
+  require '../../components/icon_demo'
   require '../../components/input_demo'
   require '../../components/floating_action_button_demo'
   require '../../components/dialog_demo'
