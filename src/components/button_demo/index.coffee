@@ -14,45 +14,50 @@ module.exports = class ButtonDemo
   render: =>
     {$buttons} = @state()
 
+    i = 0
+    # coffeelint: disable=no_plusplus
     z '.z-button-demo',
       z '.light',
-        z $buttons[0],
+        z $buttons[i++],
           text: 'click me'
-        z $buttons[1],
+        z $buttons[i++],
           text: 'click me'
-        z $buttons[2],
+        z $buttons[i++],
           text: 'click me'
           isDisabled: true
-        z $buttons[3],
+        z $buttons[i++],
           text: 'click me'
           colors:
             ink: paperColors.$red500
-        z $buttons[4],
+        z $buttons[i++],
           text: 'click me'
           isDisabled: true
           colors:
             ink: paperColors.$red500
+        z $buttons[i++],
+          text: 'click me'
+          type: 'submit'
       z '.dark',
-        z $buttons[5],
+        z $buttons[i++],
           text: 'click me'
           isDark: true
-        z $buttons[6],
+        z $buttons[i++],
           text: 'click me'
           isDisabled: true
           isDark: true
-        z $buttons[7],
+        z $buttons[i++],
           text: 'click me'
           isDark: true
           colors:
             ink: paperColors.$red500
-        z $buttons[8],
+        z $buttons[i++],
           text: 'click me'
           isDisabled: true
           isDark: true
           colors:
             ink: paperColors.$red500
       z '.light',
-        z $buttons[9],
+        z $buttons[i++],
           text: 'click me'
           isRaised: true
           colors:
@@ -61,7 +66,7 @@ module.exports = class ButtonDemo
             c500: paperColors.$blue500
             c600: paperColors.$blue600
             c700: paperColors.$blue700
-        z $buttons[10],
+        z $buttons[i++],
           text: 'click me'
           isRaised: true
           colors:
@@ -71,7 +76,7 @@ module.exports = class ButtonDemo
             c600: paperColors.$blue600
             c700: paperColors.$blue700
           isDisabled: true
-        z $buttons[11],
+        z $buttons[i++],
           text: 'click me'
           isRaised: true
           colors:
@@ -81,7 +86,7 @@ module.exports = class ButtonDemo
             c600: paperColors.$blue600
             c700: paperColors.$blue700
             ink: paperColors.$red500
-        z $buttons[12],
+        z $buttons[i++],
           text: 'click me'
           isRaised: true
           colors:
@@ -93,7 +98,7 @@ module.exports = class ButtonDemo
             ink: paperColors.$red500
           isDisabled: true
       z '.dark',
-        z $buttons[13],
+        z $buttons[i++],
           text: 'click me'
           isRaised: true
           colors:
@@ -103,7 +108,7 @@ module.exports = class ButtonDemo
             c600: paperColors.$blue600
             c700: paperColors.$blue700
           isDark: true
-        z $buttons[14],
+        z $buttons[i++],
           text: 'click me'
           isRaised: true
           colors:
@@ -114,7 +119,7 @@ module.exports = class ButtonDemo
             c700: paperColors.$blue700
           isDisabled: true
           isDark: true
-        z $buttons[15],
+        z $buttons[i++],
           text: 'click me'
           isRaised: true
           colors:
@@ -125,7 +130,7 @@ module.exports = class ButtonDemo
             c700: paperColors.$blue700
             ink: paperColors.$red500
           isDark: true
-        z $buttons[16],
+        z $buttons[i++],
           text: 'click me'
           isRaised: true
           colors:
@@ -137,3 +142,4 @@ module.exports = class ButtonDemo
             ink: paperColors.$red500
           isDisabled: true
           isDark: true
+      # coffeelint: enable=no_plusplus
