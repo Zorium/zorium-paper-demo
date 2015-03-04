@@ -22,8 +22,6 @@ module.exports = class ButtonDemo
           text: 'click me'
         z $buttons[i++],
           text: 'click me'
-        z $buttons[i++],
-          text: 'click me'
           isDisabled: true
         z $buttons[i++],
           text: 'click me'
