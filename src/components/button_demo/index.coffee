@@ -35,6 +35,13 @@ module.exports = class ButtonDemo
         z $buttons[i++],
           text: 'click me'
           type: 'submit'
+        z $buttons[i++],
+          $content: z 'div',
+            style:
+              width: '80%'
+              height: '10px'
+              margin: 'auto'
+              background: 'linear-gradient(to right, orange , transparent)'
       z '.dark',
         z $buttons[i++],
           text: 'click me'
